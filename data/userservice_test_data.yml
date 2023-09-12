@@ -1,0 +1,155 @@
+TestLogin: # TestLogin is the name of the test suite
+  test_userservice_login: # test_userservice_login is the name of the test case
+    parameters: # parameters that the test case accepts
+      title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code, expect_msg
+    values: # values to be used for each parameter in the test case
+      - [
+          "ios-µÇÂ¼³É¹¦",
+          "",
+          true,
+          "test200@premom.com",
+          "123456",
+          "decbb1ef-e41c-4cbd-9265-902415f00504",
+          "iPhone XR 13.3",
+          "+0800",
+          True,
+          200,
+          '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}'
+        ]
+      - [
+          "Android-µÇÂ¼³É¹¦",
+          "",
+          true,
+          "test201@premom.com",
+          "123456",
+          "decbb1ef-e41c-4cbd-9265-902415f00504",
+          "iSM-S908N_33",
+          "+0800",
+          True,
+          200,
+          '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}'
+        ]
+      - [
+          "ÃÜÂë´íÎó",
+          "",
+          true,
+          "test202@premom.com",
+          "12345",
+          "decbb1ef-e41c-4cbd-9265-902415f00504",
+          "iSM-S908N_33",
+          "+0800",
+          True,
+          510,
+          '{"code":"SIGN_PASSWORD_NOT_MATCHED","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}'
+        ]
+      - [
+          "Email´íÎó",
+          "",
+          true,
+          "1test203@premom.com",
+          "123456",
+          "decbb1ef-e41c-4cbd-9265-902415f00504",
+          "iSM-S908N_33",
+          "+0800",
+          True,
+          510,
+          '{"code":"SIGN_USER_NOT_EXIST","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}'
+        ]
+      - [
+          "ÃÜÂëÎª¿Õ",
+          "",
+          true,
+          "test204@premom.com",
+          "",
+          "decbb1ef-e41c-4cbd-9265-902415f00504",
+          "iSM-S908N_33",
+          "+0800",
+          True,
+          510,
+          '{"code":"SIGN_INVALID_REGISTER_PASSWORD","message":"Invalid password.","hideMsg":false,"noLog":true}'
+        ]
+      - [
+          "EmailÎª¿Õ",
+          "",
+          true,
+          "",
+          "123456",
+          "decbb1ef-e41c-4cbd-9265-902415f00504",
+          "iSM-S908N_33",
+          "+0800",
+          True,
+          510,
+          '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}'
+        ]
+
+TestRegister: # TestRegister is the name of the test suite
+  test_userservice_register: # test_userservice_register is the name of the test case
+    parameters: # parameters that the test case accepts
+      title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
+    values:
+      - [
+          "ios-×¢²á³É¹¦",
+          "test501@premom.com",
+          "123456",
+          "iPhone 13  Pro 15.3.1",
+          "Snd",
+          "Yeue",
+          True,
+          200,
+          "",
+        ]
+      - [
+          "ÖØ¸´×¢²á",
+          "test500@premom.com",
+          "123456",
+          "iPhone 13  Pro 15.3.1",
+          "Snd",
+          "Yeue",
+          True,
+          510,
+          "This email has already been registered."
+        ]
+      - [
+          "ÓÊÏäÎª¿Õ",
+          "",
+          "123456",
+          "iPhone 13  Pro 15.3.1",
+          "Snd",
+          "Yeue",
+          True,
+          510,
+          "Invalid account."
+        ]
+      - [
+          "ÃÜÂëÎª¿Õ",
+          "test501@premom.com",
+          "",
+          "iPhone 13  Pro 15.3.1",
+          "Snd",
+          "Yeue",
+          True,
+          510,
+          "nvalid password."
+        ]
+
+TestDelete: # TestDelete is the name of the test suite
+  test_userservice_delete: # test_userservice_delete is the name of the test case
+    parameters: # parameters that the test case accepts
+        title, reasonType, appsflyerId, except_result, expect_code, expect_msg
+    values:
+      - [
+        "iOS-É¾³ý³É¹¦",
+        "OTHERS",
+        "",
+        True,
+        200,
+        "É¾³ý"
+        ]
+      - [
+        "É¾³ýÊ§°Ü",
+        "",
+        "",
+        True,
+        "TOKEN_ERR_FORCE_LOGOUT",
+        "Your account has been deleted. Please feel free to register again if necessary."
+        ]
