@@ -64,8 +64,6 @@ class User:
         logger.info(authToken)
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
-        # return res.headers.get("authToken")
-
     def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg):
         json_data = {
             "reasonType": reasonType,
@@ -83,3 +81,4 @@ class User:
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言
+
