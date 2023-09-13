@@ -74,7 +74,6 @@ def pytest_addoption(parser):
     parser.addoption("--env", action="store",default="test", help="Specify the enviroment to run the test")
 
 
-    # parser.addoption("--env", action="store", default="test", help="Specify the environment to run the tests")
 
 # @pytest.fixture(scope="session")
 # def base_url(request):
