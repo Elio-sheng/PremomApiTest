@@ -1,63 +1,85 @@
+import json
+
 from core.result_base import ResultBase
 from api.user import UserService
 from common.logger import logger
 import os
 
+class User:
+    #初始化数据
+    authToken = None
+    def webUserLogin(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg):
+        """
+        Register user information.
 
-def webUserLogin(title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg):
-    """
-    Register user information.
+        Args:
+            anonymousId (str): Anonymous ID.
+            bindAnonymous (bool): Flag indicating if the user should be bound to the anonymous ID.
+            email (str): User's email address.
+            password (str): User's password.
+            phoneID (str): User's phone ID.
+            platform (str): User's platform.
+            timeZone (str): User's time zone.
 
-    Args:
-        anonymousId (str): Anonymous ID.
-        bindAnonymous (bool): Flag indicating if the user should be bound to the anonymous ID.
-        email (str): User's email address.
-        password (str): User's password.
-        phoneID (str): User's phone ID.
-        platform (str): User's platform.
-        timeZone (str): User's time zone.
+        Returns:
+            ResultBase: Custom keyword result.
 
-    Returns:
-        ResultBase: Custom keyword result.
+        """
 
-    """
+        json_data = {
+            "anonymousId": anonymousId,
+            "bindAnonymous": bindAnonymous,
+            "email": email,
+            "password": password,
+            "phoneID": phoneID,
+            "platform": platform,
+            "timeZone": timeZone,
+        }
 
-    json_data = {
-        "anonymousId": anonymousId,
-        "bindAnonymous": bindAnonymous,
-        "email": email,
-        "password": password,
-        "phoneID": phoneID,
-        "platform": platform,
-        "timeZone": timeZone,
-    }
+        header = {
+            "Content-Type": "application/json"
+        }
+        webUser = UserService(base_url=os.environ.get("API_URL"))
+        res = webUser.webUserLogin(json=json_data, headers=header)
+        logger.info(res.json())
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言
 
-    header = {
-        "Content-Type": "application/json"
-    }
-    webUser = UserService(base_url=os.environ.get("API_URL"))
-    res = webUser.webUserLogin(json=json_data, headers=header)
-    logger.info(res.json())
-    ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言
+    def webRegister(self, title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg):
+        json_data = {
+            "email": email,
+            "password": password,
+            "OSType": OSType,
+            "lastName": lastName,
+            "firstName": firstName
+        }
+        header = {
+            "InstallId": "s4m11r14kkrhqqg4f17869",
+            "apiVersion": "42",
+            "Content-Type": "application/json"
+        }
+        webUser = UserService(base_url=os.environ.get("API_URL"))
+        res = webUser.webRegister(json=json_data, headers=header)
+        logger.info(res.headers)
+        authToken = res.headers.get("authToken")   #提取token
+        logger.info(authToken)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
-def webRegister(title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg):
-    json_data = {
-        "email": email,
-        "password": password,
-        "OSType": OSType,
-        "lastName": lastName,
-        "firstName": firstName
-    }
-    header = {
-        "InstallId": "s4m11r14kkrhqqg4f17869",
-        "apiVersion": "42",
-        "Content-Type": "application/json"
-    }
-    webUser = UserService(base_url=os.environ.get("API_URL"))
-    res = webUser.webRegister(json=json_data, headers=header)
-    logger.info(res.json())
-    # logger.info("预期code===>> {}".format(expect_code))
-    # logger.info("实际code===>> {}".format(res.status_code))
-    # logger.info("预期msg===>> {}".format(expect_msg))
-    # logger.info("实际msg===>> {}".format(res.text))
-    ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言
+        # return res.headers.get("authToken")
+
+    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg):
+        json_data = {
+            "reasonType": reasonType,
+            "appsflyerId": appsflyerId
+        }
+        header = {
+            "authToken": self.authToken,
+            "Content-Type": "application/json"
+        }
+        webUser = UserService(base_url=os.environ.get("API_URL"))
+        res = webUser.userDelete(json=json_data, headers=header)
+        logger.info(res.json())
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言

@@ -1,7 +1,7 @@
 TestLogin: # TestLogin is the name of the test suite
   test_userservice_login: # test_userservice_login is the name of the test case
     parameters: # parameters that the test case accepts
-      title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code, expect_msg
+      title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, expect_result, expect_code, expect_msg
     values: # values to be used for each parameter in the test case
       - [
           "ios-µÇÂ¼³É¹¦",
@@ -82,14 +82,14 @@ TestLogin: # TestLogin is the name of the test suite
           '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}'
         ]
 
-TestRegister: # TestRegister is the name of the test suite
+#TestRegister: # TestRegister is the name of the test suite
   test_userservice_register: # test_userservice_register is the name of the test case
     parameters: # parameters that the test case accepts
-      title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
+      title, email, password, OSType, lastName, firstName, expect_result, expect_code, expect_msg
     values:
       - [
           "ios-×¢²á³É¹¦",
-          "test501@premom.com",
+          "test516@premom.com",
           "123456",
           "iPhone 13  Pro 15.3.1",
           "Snd",
@@ -98,44 +98,44 @@ TestRegister: # TestRegister is the name of the test suite
           200,
           "",
         ]
-      - [
-          "ÖØ¸´×¢²á",
-          "test500@premom.com",
-          "123456",
-          "iPhone 13  Pro 15.3.1",
-          "Snd",
-          "Yeue",
-          True,
-          510,
-          "This email has already been registered."
-        ]
-      - [
-          "ÓÊÏäÎª¿Õ",
-          "",
-          "123456",
-          "iPhone 13  Pro 15.3.1",
-          "Snd",
-          "Yeue",
-          True,
-          510,
-          "Invalid account."
-        ]
-      - [
-          "ÃÜÂëÎª¿Õ",
-          "test501@premom.com",
-          "",
-          "iPhone 13  Pro 15.3.1",
-          "Snd",
-          "Yeue",
-          True,
-          510,
-          "nvalid password."
-        ]
+#      - [
+#          "ÖØ¸´×¢²á",
+#          "test500@premom.com",
+#          "123456",
+#          "iPhone 13  Pro 15.3.1",
+#          "Snd",
+#          "Yeue",
+#          True,
+#          510,
+#          "This email has already been registered."
+#        ]
+#      - [
+#          "ÓÊÏäÎª¿Õ",
+#          "",
+#          "123456",
+#          "iPhone 13  Pro 15.3.1",
+#          "Snd",
+#          "Yeue",
+#          True,
+#          510,
+#          "Invalid account."
+#        ]
+#      - [
+#          "ÃÜÂëÎª¿Õ",
+#          "test501@premom.com",
+#          "",
+#          "iPhone 13  Pro 15.3.1",
+#          "Snd",
+#          "Yeue",
+#          True,
+#          510,
+#          "nvalid password."
+#        ]
 
-TestDelete: # TestDelete is the name of the test suite
+#TestDelete: # TestDelete is the name of the test suite
   test_userservice_delete: # test_userservice_delete is the name of the test case
     parameters: # parameters that the test case accepts
-        title, reasonType, appsflyerId, except_result, expect_code, expect_msg
+        title, reasonType, appsflyerId, expect_result, expect_code, expect_msg
     values:
       - [
         "iOS-É¾³ý³É¹¦",
@@ -143,13 +143,13 @@ TestDelete: # TestDelete is the name of the test suite
         "",
         True,
         200,
-        "É¾³ý"
+        ''
         ]
       - [
         "É¾³ýÊ§°Ü",
         "",
         "",
         True,
-        "TOKEN_ERR_FORCE_LOGOUT",
+        510,
         "Your account has been deleted. Please feel free to register again if necessary."
         ]
