@@ -42,7 +42,7 @@ class User:
         webUser = UserService(base_url=os.environ.get("API_URL"))
         res = webUser.webUserLogin(json=json_data, headers=header)
         logger.info(res.json())
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
     def webRegister(self, title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg):
         json_data = {
@@ -80,5 +80,5 @@ class User:
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
