@@ -1,5 +1,4 @@
 import json
-
 from core.result_base import ResultBase
 from api.user import UserService
 from common.logger import logger
