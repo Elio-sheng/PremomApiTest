@@ -78,7 +78,7 @@ class User:
         logger.info(res.json())
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
-        logger.info("预期msg===>> {}".format(expect_msg))
+        # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
