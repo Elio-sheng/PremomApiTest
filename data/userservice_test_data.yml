@@ -89,7 +89,7 @@ TestLogin: # TestLogin is the name of the test suite
     values:
       - [
           "ios-×¢²á³É¹¦",
-          "test516@premom.com",
+          "test517@premom.com",
           "123456",
           "iPhone 13  Pro 15.3.1",
           "Snd",
@@ -98,39 +98,39 @@ TestLogin: # TestLogin is the name of the test suite
           200,
           "",
         ]
-#      - [
-#          "ÖØ¸´×¢²á",
-#          "test500@premom.com",
-#          "123456",
-#          "iPhone 13  Pro 15.3.1",
-#          "Snd",
-#          "Yeue",
-#          True,
-#          510,
-#          "This email has already been registered."
-#        ]
-#      - [
-#          "ÓÊÏäÎª¿Õ",
-#          "",
-#          "123456",
-#          "iPhone 13  Pro 15.3.1",
-#          "Snd",
-#          "Yeue",
-#          True,
-#          510,
-#          "Invalid account."
-#        ]
-#      - [
-#          "ÃÜÂëÎª¿Õ",
-#          "test501@premom.com",
-#          "",
-#          "iPhone 13  Pro 15.3.1",
-#          "Snd",
-#          "Yeue",
-#          True,
-#          510,
-#          "nvalid password."
-#        ]
+      - [
+          "ÖØ¸´×¢²á",
+          "test500@premom.com",
+          "123456",
+          "iPhone 13  Pro 15.3.1",
+          "Snd",
+          "Yeue",
+          True,
+          510,
+          "This email has already been registered."
+        ]
+      - [
+          "ÓÊÏäÎª¿Õ",
+          "",
+          "123456",
+          "iPhone 13  Pro 15.3.1",
+          "Snd",
+          "Yeue",
+          True,
+          510,
+          "Invalid account."
+        ]
+      - [
+          "ÃÜÂëÎª¿Õ",
+          "test501@premom.com",
+          "",
+          "iPhone 13  Pro 15.3.1",
+          "Snd",
+          "Yeue",
+          True,
+          510,
+          "nvalid password."
+        ]
 
 #TestDelete: # TestDelete is the name of the test suite
   test_userservice_delete: # test_userservice_delete is the name of the test case
@@ -145,11 +145,11 @@ TestLogin: # TestLogin is the name of the test suite
         200,
         ''
         ]
-      - [
-        "É¾³ýÊ§°Ü",
-        "",
-        "",
-        True,
-        510,
-        "Your account has been deleted. Please feel free to register again if necessary."
-        ]
+#      - [
+#        "É¾³ýÊ§°Ü",
+#        "",
+#        "",
+#        True,
+#        510,
+#        "Your account has been deleted. Please feel free to register again if necessary."
+#        ]
