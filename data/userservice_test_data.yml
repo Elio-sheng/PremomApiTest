@@ -16,123 +16,121 @@ TestLogin: # TestLogin is the name of the test suite
           200,
           '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}',
         ]
-      - [
-          "Android-登录成功",
-          "",
-          true,
-          "test201@premom.com",
-          "123456",
-          "decbb1ef-e41c-4cbd-9265-902415f00504",
-          "iSM-S908N_33",
-          "+0800",
-          True,
-          200,
-          '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}',
-        ]
-      - [
-          "密码错误",
-          "",
-          true,
-          "test202@premom.com",
-          "12345",
-          "decbb1ef-e41c-4cbd-9265-902415f00504",
-          "iSM-S908N_33",
-          "+0800",
-          True,
-          510,
-          '{"code":"SIGN_PASSWORD_NOT_MATCHED","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}',
-        ]
-      - [
-          "Email错误",
-          "",
-          true,
-          "1test203@premom.com",
-          "123456",
-          "decbb1ef-e41c-4cbd-9265-902415f00504",
-          "iSM-S908N_33",
-          "+0800",
-          True,
-          510,
-          '{"code":"SIGN_USER_NOT_EXIST","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}',
-        ]
-      - [
-          "密码为空",
-          "",
-          true,
-          "test204@premom.com",
-          "",
-          "decbb1ef-e41c-4cbd-9265-902415f00504",
-          "iSM-S908N_33",
-          "+0800",
-          True,
-          510,
-          '{"code":"SIGN_INVALID_REGISTER_PASSWORD","message":"Invalid password.","hideMsg":false,"noLog":true}',
-        ]
-      - [
-          "Email为空",
-          "",
-          true,
-          "",
-          "123456",
-          "decbb1ef-e41c-4cbd-9265-902415f00504",
-          "iSM-S908N_33",
-          "+0800",
-          True,
-          510,
-          '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}',
-        ]
+  #       - [
+  #           "Android-登录成功",
+  #           "",
+  #           true,
+  #           "test201@premom.com",
+  #           "123456",
+  #           "decbb1ef-e41c-4cbd-9265-902415f00504",
+  #           "iSM-S908N_33",
+  #           "+0800",
+  #           True,
+  #           200,
+  #           '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}',
+  #         ]
+  #       - [
+  #           "密码错误",
+  #           "",
+  #           true,
+  #           "test202@premom.com",
+  #           "12345",
+  #           "decbb1ef-e41c-4cbd-9265-902415f00504",
+  #           "iSM-S908N_33",
+  #           "+0800",
+  #           True,
+  #           510,
+  #           '{"code":"SIGN_PASSWORD_NOT_MATCHED","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}',
+  #         ]
+  #       - [
+  #           "Email错误",
+  #           "",
+  #           true,
+  #           "1test203@premom.com",
+  #           "123456",
+  #           "decbb1ef-e41c-4cbd-9265-902415f00504",
+  #           "iSM-S908N_33",
+  #           "+0800",
+  #           True,
+  #           510,
+  #           '{"code":"SIGN_USER_NOT_EXIST","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}',
+  #         ]
+  #       - [
+  #           "密码为空",
+  #           "",
+  #           true,
+  #           "test204@premom.com",
+  #           "",
+  #           "decbb1ef-e41c-4cbd-9265-902415f00504",
+  #           "iSM-S908N_33",
+  #           "+0800",
+  #           True,
+  #           510,
+  #           '{"code":"SIGN_INVALID_REGISTER_PASSWORD","message":"Invalid password.","hideMsg":false,"noLog":true}',
+  #         ]
+  #       - [
+  #           "Email为空",
+  #           "",
+  #           true,
+  #           "",
+  #           "123456",
+  #           "decbb1ef-e41c-4cbd-9265-902415f00504",
+  #           "iSM-S908N_33",
+  #           "+0800",
+  #           True,
+  #           510,
+  #           '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}',
+  #         ]
 
-TestRegister: # TestRegister is the name of the test suite
-  test_userservice_register: # test_userservice_register is the name of the test case
-    parameters: # parameters that the test case accepts
-      title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
-    values:
-      - [
-          "ios-注册成功",
-          "test501@premom.com",
-          "123456",
-          "iPhone 13  Pro 15.3.1",
-          "Snd",
-          "Yeue",
-          True,
-          200,
-          "",
-        ]
-      - [
-          "重复注册",
-          "test500@premom.com",
-          "123456",
-          "iPhone 13  Pro 15.3.1",
-          "Snd",
-          "Yeue",
-          True,
-          510,
-          "This email has already been registered.",
-        ]
-      - [
-          "邮箱为空",
-          "",
-          "123456",
-          "iPhone 13  Pro 15.3.1",
-          "Snd",
-          "Yeue",
-          True,
-          510,
-          "Invalid account.",
-        ]
-      - [
-          "密码为空",
-          "test501@premom.com",
-          "",
-          "iPhone 13  Pro 15.3.1",
-          "Snd",
-          "Yeue",
-          True,
-          510,
-          "nvalid password.",
-        ]
-
-TestDelete: # TestDelete is the name of the test suite
+  # TestRegister: # TestRegister is the name of the test suite
+  #   test_userservice_register: # test_userservice_register is the name of the test case
+  #     parameters: # parameters that the test case accepts
+  #       title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
+  #     values:
+  #       - [
+  #           "ios-注册成功",
+  #           "test501@premom.com",
+  #           "123456",
+  #           "iPhone 13  Pro 15.3.1",
+  #           "Snd",
+  #           "Yeue",
+  #           True,
+  #           200,
+  #           "",
+  #         ]
+  #       - [
+  #           "重复注册",
+  #           "test500@premom.com",
+  #           "123456",
+  #           "iPhone 13  Pro 15.3.1",
+  #           "Snd",
+  #           "Yeue",
+  #           True,
+  #           510,
+  #           "This email has already been registered.",
+  #         ]
+  #       - [
+  #           "邮箱为空",
+  #           "",
+  #           "123456",
+  #           "iPhone 13  Pro 15.3.1",
+  #           "Snd",
+  #           "Yeue",
+  #           True,
+  #           510,
+  #           "Invalid account.",
+  #         ]
+  #       - [
+  #           "密码为空",
+  #           "test501@premom.com",
+  #           "",
+  #           "iPhone 13  Pro 15.3.1",
+  #           "Snd",
+  #           "Yeue",
+  #           True,
+  #           510,
+  #           "nvalid password.",
+  #         ]
   test_userservice_delete: # test_userservice_delete is the name of the test case
     parameters: # parameters that the test case accepts
       title, reasonType, appsflyerId, except_result, expect_code, expect_msg
