@@ -3,8 +3,9 @@ from core.result_base import ResultBase
 from api.user import UserService
 from common.logger import logger
 import os
+from common.mysql_operate import db
 
-class User:
+class User(object):
     #初始化数据
     authToken = None
     def webUserLogin(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg):
@@ -34,11 +35,13 @@ class User:
             "platform": platform,
             "timeZone": timeZone,
         }
-
+        logger.info(json_data)
         header = {
             "Content-Type": "application/json"
         }
-        webUser = UserService(base_url=os.environ.get("API_URL"))
+        webUser = UserService()
+        results = db.select_db("show tables;")
+        logger.info(results)
         res = webUser.webUserLogin(json=json_data, headers=header)
         logger.info(res.json())
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
@@ -80,4 +83,6 @@ class User:
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
+
+
 
