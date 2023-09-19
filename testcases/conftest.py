@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pytest
 import os
 from common.logger import logger

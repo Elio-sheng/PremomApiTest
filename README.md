@@ -54,24 +54,41 @@ markers =
 2. **安装依赖**：在项目根目录下运行以下命令来安装项目的依赖包：
 
    ```bash
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt
    ```
 
 #### 运行测试
 
-> --testenv 是必填参数用来区分测试的环境
+> config 文件夹里面的 setting.ini 的 host 配置是必填参数用来区分测试的环境
 
-1. 在项目根目录下运行以下命令来运行所有的测试用例：
+1. 请填写 API 接口的 URL(在 config 文件夹里面的 setting.ini 文件中)
+
+```
+[host]
+# test env url
+api_root_url = http://api.test.premom.tech
+```
+
+2. 在项目根目录下运行以下命令来运行所有的测试用例：
 
    ```bash
-   python run.py --env=mtest
+   python run.py
    ```
 
-2. 如果你只想运行某一类测试用例，你可以使用 `-m` 选项来选择要运行的测试用例。例如，以下命令将会运行所有标记为 `single` 的测试用例：
+3. 如果你只想运行某一类测试用例，你可以使用 `-m` 选项来选择要运行的测试用例。例如，以下命令将会运行所有标记为 `single` 的测试用例：
 
    ```bash
-   python run.py -m single --testenv=mtest
+   python run.py -m single
    ```
+
+#### 使用 DB 做 CRUD 的操作
+
+```
+        from common.mysql_operate import db
+
+        results = db.select_db("show tables;")
+        print(results)
+```
 
 #### 添加新的接口
 

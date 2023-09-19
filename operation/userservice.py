@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import json
 from core.result_base import ResultBase
 from api.user import UserService
@@ -40,8 +42,6 @@ class User(object):
             "Content-Type": "application/json"
         }
         webUser = UserService()
-        results = db.select_db("show tables;")
-        logger.info(results)
         res = webUser.webUserLogin(json=json_data, headers=header)
         logger.info(res.json())
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from common.logger import logger
 from operation.userservice import User
 

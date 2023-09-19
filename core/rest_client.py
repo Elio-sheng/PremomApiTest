@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import requests
 import json as complexjson
 from common.logger import logger

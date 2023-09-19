@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from core.rest_client import RestClient
 
 class MiscService(RestClient):
