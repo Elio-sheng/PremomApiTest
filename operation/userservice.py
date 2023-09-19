@@ -66,16 +66,16 @@ class User(object):
         logger.info(authToken)
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
-    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg):
+    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, global_token):
         json_data = {
             "reasonType": reasonType,
             "appsflyerId": appsflyerId
         }
         header = {
-            "authToken": self.authToken,
+            "authToken": global_token,
             "Content-Type": "application/json"
         }
-        webUser = UserService(base_url=os.environ.get("API_URL"))
+        webUser = UserService()
         res = webUser.userDelete(json=json_data, headers=header)
         logger.info(res.json())
         logger.info("预期code===>> {}".format(expect_code))
@@ -83,6 +83,5 @@ class User(object):
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
-
 
 

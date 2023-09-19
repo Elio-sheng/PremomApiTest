@@ -33,7 +33,7 @@ class TestLogin():
         logger.info("*************** 开始执行用例 ***************")
         logger.info(global_token)
         # Call the webUserDelete function with the provided parameters
-        result = User().userDelete(title, reasonType, appsflyerId, except_result, expect_code, expect_msg)
+        result = User().userDelete(title, reasonType, appsflyerId, except_result, expect_code, expect_msg, global_token)
         logger.info(result)
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
