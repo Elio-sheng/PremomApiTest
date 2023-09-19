@@ -1,10 +1,10 @@
 TestLogin: # TestLogin is the name of the test suite
   test_userservice_login: # test_userservice_login is the name of the test case
     parameters: # parameters that the test case accepts
-      title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, expect_result, expect_code, expect_msg
+      title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code, expect_msg
     values: # values to be used for each parameter in the test case
       - [
-          "ios-µÇÂ¼³É¹¦",
+          "ios-ç™»å½•æˆåŠŸ",
           "",
           true,
           "test200@premom.com",
@@ -14,10 +14,10 @@ TestLogin: # TestLogin is the name of the test suite
           "+0800",
           True,
           200,
-          '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}'
+          '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}',
         ]
       - [
-          "Android-µÇÂ¼³É¹¦",
+          "Android-ç™»å½•æˆåŠŸ",
           "",
           true,
           "test201@premom.com",
@@ -27,10 +27,10 @@ TestLogin: # TestLogin is the name of the test suite
           "+0800",
           True,
           200,
-          '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}'
+          '{"init":true,"newUser":false,"gotoWelcomeKit":false,"gotoMembershipPromotion":false}',
         ]
       - [
-          "ÃÜÂë´íÎó",
+          "å¯†ç é”™è¯¯",
           "",
           true,
           "test202@premom.com",
@@ -40,10 +40,10 @@ TestLogin: # TestLogin is the name of the test suite
           "+0800",
           True,
           510,
-          '{"code":"SIGN_PASSWORD_NOT_MATCHED","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}'
+          '{"code":"SIGN_PASSWORD_NOT_MATCHED","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}',
         ]
       - [
-          "Email´íÎó",
+          "Emailé”™è¯¯",
           "",
           true,
           "1test203@premom.com",
@@ -53,10 +53,10 @@ TestLogin: # TestLogin is the name of the test suite
           "+0800",
           True,
           510,
-          '{"code":"SIGN_USER_NOT_EXIST","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}'
+          '{"code":"SIGN_USER_NOT_EXIST","message":"Please enter the correct email or password.","hideMsg":false,"noLog":true}',
         ]
       - [
-          "ÃÜÂëÎª¿Õ",
+          "å¯†ç ä¸ºç©º",
           "",
           true,
           "test204@premom.com",
@@ -66,10 +66,10 @@ TestLogin: # TestLogin is the name of the test suite
           "+0800",
           True,
           510,
-          '{"code":"SIGN_INVALID_REGISTER_PASSWORD","message":"Invalid password.","hideMsg":false,"noLog":true}'
+          '{"code":"SIGN_INVALID_REGISTER_PASSWORD","message":"Invalid password.","hideMsg":false,"noLog":true}',
         ]
       - [
-          "EmailÎª¿Õ",
+          "Emailä¸ºç©º",
           "",
           true,
           "",
@@ -79,17 +79,17 @@ TestLogin: # TestLogin is the name of the test suite
           "+0800",
           True,
           510,
-          '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}'
+          '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}',
         ]
 
-#TestRegister: # TestRegister is the name of the test suite
+TestRegister: # TestRegister is the name of the test suite
   test_userservice_register: # test_userservice_register is the name of the test case
     parameters: # parameters that the test case accepts
-      title, email, password, OSType, lastName, firstName, expect_result, expect_code, expect_msg
+      title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
     values:
       - [
-          "ios-×¢²á³É¹¦",
-          "test517@premom.com",
+          "ios-æ³¨å†ŒæˆåŠŸ",
+          "test501@premom.com",
           "123456",
           "iPhone 13  Pro 15.3.1",
           "Snd",
@@ -99,7 +99,7 @@ TestLogin: # TestLogin is the name of the test suite
           "",
         ]
       - [
-          "ÖØ¸´×¢²á",
+          "é‡å¤æ³¨å†Œ",
           "test500@premom.com",
           "123456",
           "iPhone 13  Pro 15.3.1",
@@ -107,10 +107,10 @@ TestLogin: # TestLogin is the name of the test suite
           "Yeue",
           True,
           510,
-          "This email has already been registered."
+          "This email has already been registered.",
         ]
       - [
-          "ÓÊÏäÎª¿Õ",
+          "é‚®ç®±ä¸ºç©º",
           "",
           "123456",
           "iPhone 13  Pro 15.3.1",
@@ -118,10 +118,10 @@ TestLogin: # TestLogin is the name of the test suite
           "Yeue",
           True,
           510,
-          "Invalid account."
+          "Invalid account.",
         ]
       - [
-          "ÃÜÂëÎª¿Õ",
+          "å¯†ç ä¸ºç©º",
           "test501@premom.com",
           "",
           "iPhone 13  Pro 15.3.1",
@@ -129,27 +129,20 @@ TestLogin: # TestLogin is the name of the test suite
           "Yeue",
           True,
           510,
-          "nvalid password."
+          "nvalid password.",
         ]
 
-#TestDelete: # TestDelete is the name of the test suite
+TestDelete: # TestDelete is the name of the test suite
   test_userservice_delete: # test_userservice_delete is the name of the test case
     parameters: # parameters that the test case accepts
-        title, reasonType, appsflyerId, expect_result, expect_code, expect_msg
+      title, reasonType, appsflyerId, except_result, expect_code, expect_msg
     values:
+      - ["iOS-åˆ é™¤æˆåŠŸ", "OTHERS", "", True, 200, "åˆ é™¤"]
       - [
-        "iOS-É¾³ı³É¹¦",
-        "OTHERS",
-        "",
-        True,
-        200,
-        ''
+          "åˆ é™¤å¤±è´¥",
+          "",
+          "",
+          True,
+          "TOKEN_ERR_FORCE_LOGOUT",
+          "Your account has been deleted. Please feel free to register again if necessary.",
         ]
-#      - [
-#        "É¾³ıÊ§°Ü",
-#        "",
-#        "",
-#        True,
-#        510,
-#        "Your account has been deleted. Please feel free to register again if necessary."
-#        ]
