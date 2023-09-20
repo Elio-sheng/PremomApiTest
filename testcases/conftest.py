@@ -12,7 +12,7 @@ userTestdata = None
 def get_data(yaml_file_name):
     data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
     try:
-        with open(data_file_path, 'r') as file:
+        with open(data_file_path, 'r', encoding='utf-8') as file:
             yaml_data = yaml.safe_load(file)
     except FileNotFoundError:
         pytest.skip(f"File not found: {data_file_path}")
@@ -51,12 +51,12 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize(parameters, values)
         
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", autouse=True)
 def global_token():
     json_data = {
       "anonymousId": "",
       "bindAnonymous": "true",
-      "email": "test103@premom.com",
+      "email": "test510@premom.com",
       "password": "123456",
       "phoneID": "decbb1ef-e41c-4cbd-9265-902415f00504",
       "platform": "iPhone XR 13.3",

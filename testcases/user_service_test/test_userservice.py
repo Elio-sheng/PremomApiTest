@@ -28,12 +28,12 @@ class TestLogin():
     #     # Print a message to indicate the end of the test case
     #     logger.info("*************** 结束执行用例 ***************")
 
-    def test_userservice_delete(self, title, reasonType, appsflyerId, except_result, expect_code, expect_msg, global_token):
+    def test_userservice_delete(self, title, reasonType, appsflyerId, except_result, expect_code, expect_msg, userToken):
         # Print a message to indicate the start of the test case
         logger.info("*************** 开始执行用例 ***************")
-        logger.info(global_token)
+        logger.info(userToken)
         # Call the webUserDelete function with the provided parameters
-        result = User().userDelete(title, reasonType, appsflyerId, except_result, expect_code, expect_msg, global_token)
+        result = User().userDelete(title, reasonType, appsflyerId, except_result, expect_code, expect_msg, userToken)
         logger.info(result)
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
