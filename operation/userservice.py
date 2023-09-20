@@ -7,11 +7,12 @@ from common.logger import logger
 import os
 # from common.mysql_operate import db
 from common.get_token import get_token
+from testcases.conftest import global_token
 
 
 class User(object):
     #初始化数据
-    authToken = None
+    # authToken = None
     def webUserLogin(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg):
         """
         Register user information.
@@ -66,39 +67,36 @@ class User(object):
         webUser = UserService(base_url=os.environ.get("API_URL"))
         res = webUser.webRegister(json=json_data, headers=header)
         logger.info(res.headers)
-        authToken = res.headers.get("authToken")   #提取token
-        print("00000")
-        print(authToken)
-        logger.info(authToken)
+        # authToken = res.headers.get("authToken")   #提取token
+
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
-    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, global_token):
-        json_data = {
-            "reasonType": reasonType,
-            "appsflyerId": appsflyerId
-        }
-        header = {
-            "authToken": global_token,
-            "Content-Type": "application/json"
-        }
-        webUser = UserService()
-        res = webUser.userDelete(json=json_data, headers=header)
-        logger.info(res.json())
-        logger.info("预期code===>> {}".format(expect_code))
-        logger.info("实际code===>> {}".format(res.status_code))
-        # logger.info("预期msg===>> {}".format(expect_msg))
-        # logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
+    # def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, global_token):
+    #     json_data = {
+    #         "reasonType": reasonType,
+    #         "appsflyerId": appsflyerId
+    #     }
+    #     header = {
+    #         "authToken": global_token,
+    #         "Content-Type": "application/json"
+    #     }
+    #     webUser = UserService()
+    #     res = webUser.userDelete(json=json_data, headers=header)
+    #     logger.info(res.json())
+    #     logger.info("预期code===>> {}".format(expect_code))
+    #     logger.info("实际code===>> {}".format(res.status_code))
+    #     # logger.info("预期msg===>> {}".format(expect_msg))
+    #     # logger.info("实际msg===>> {}".format(res.text))
+    #     ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
 class Member(object):
     #初始化数据
-    authToken = get_token()
-    print(authToken)
-    def ismember(self, title,  except_result, expect_code,expect_msg):
+    # authToken = global_token()
+    def ismember(self, title,  except_result, expect_code,expect_msg,global_token):
         header = {
             "apiVersion": '42',
             "appVersion": '1.35.0',
-            "authToken": Member.authToken,
+            "authToken": global_token,
             "language": '0',
             "os": 'iphone',
             "timezone": 'Asia/Shanghai'
@@ -109,6 +107,6 @@ class Member(object):
         logger.info(res.json())
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
-        # logger.info("预期msg===>> {}".format(expect_msg))
-        # logger.info("实际msg===>> {}".format(res.text))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
