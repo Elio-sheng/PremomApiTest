@@ -5,7 +5,9 @@ from core.result_base import ResultBase
 from api.user import UserService
 from common.logger import logger
 import os
-from common.mysql_operate import db
+# from common.mysql_operate import db
+from common.get_token import get_token
+
 
 class User(object):
     #初始化数据
@@ -46,6 +48,8 @@ class User(object):
         logger.info(res.json())
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
+
+
     def webRegister(self, title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg):
         json_data = {
             "email": email,
@@ -63,6 +67,8 @@ class User(object):
         res = webUser.webRegister(json=json_data, headers=header)
         logger.info(res.headers)
         authToken = res.headers.get("authToken")   #提取token
+        print("00000")
+        print(authToken)
         logger.info(authToken)
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
@@ -84,4 +90,25 @@ class User(object):
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
+class Member(object):
+    #初始化数据
+    authToken = get_token()
+    print(authToken)
+    def ismember(self, title,  except_result, expect_code,expect_msg):
+        header = {
+            "apiVersion": '42',
+            "appVersion": '1.35.0',
+            "authToken": Member.authToken,
+            "language": '0',
+            "os": 'iphone',
+            "timezone": 'Asia/Shanghai'
 
+        }
+        ismember = UserService()
+        res = ismember.userIsmember(headers=header)
+        logger.info(res.json())
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        # logger.info("预期msg===>> {}".format(expect_msg))
+        # logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
