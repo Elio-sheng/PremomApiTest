@@ -5,14 +5,9 @@ from core.result_base import ResultBase
 from api.user import UserService
 from common.logger import logger
 import os
-# from common.mysql_operate import db
-from common.get_token import get_token
-from testcases.conftest import global_token
-
+from common.mysql_operate import db
 
 class User(object):
-    #初始化数据
-    # authToken = None
     def webUserLogin(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg):
         """
         Register user information.
@@ -45,11 +40,12 @@ class User(object):
             "Content-Type": "application/json"
         }
         webUser = UserService()
+        # sql = "show tables;"
+        # result = db.select_db(sql)
+        # logger.info(result)
         res = webUser.webUserLogin(json=json_data, headers=header)
         logger.info(res.json())
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
-
-
 
     def webRegister(self, title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg):
         json_data = {
@@ -66,47 +62,29 @@ class User(object):
         }
         webUser = UserService(base_url=os.environ.get("API_URL"))
         res = webUser.webRegister(json=json_data, headers=header)
-        logger.info(res.headers)
-        # authToken = res.headers.get("authToken")   #提取token
-
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
-    # def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, global_token):
-    #     json_data = {
-    #         "reasonType": reasonType,
-    #         "appsflyerId": appsflyerId
-    #     }
-    #     header = {
-    #         "authToken": global_token,
-    #         "Content-Type": "application/json"
-    #     }
-    #     webUser = UserService()
-    #     res = webUser.userDelete(json=json_data, headers=header)
-    #     logger.info(res.json())
-    #     logger.info("预期code===>> {}".format(expect_code))
-    #     logger.info("实际code===>> {}".format(res.status_code))
-    #     # logger.info("预期msg===>> {}".format(expect_msg))
-    #     # logger.info("实际msg===>> {}".format(res.text))
-    #     ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
-
-class Member(object):
-    #初始化数据
-    # authToken = global_token()
-    def ismember(self, title,  except_result, expect_code,expect_msg,global_token):
-        header = {
-            "apiVersion": '42',
-            "appVersion": '1.35.0',
-            "authToken": global_token,
-            "language": '0',
-            "os": 'iphone',
-            "timezone": 'Asia/Shanghai'
-
+    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, userToken):
+        json_data = {
+            "reasonType": reasonType,
+            "appsflyerId": appsflyerId
         }
-        ismember = UserService()
-        res = ismember.userIsmember(headers=header)
-        logger.info(res.json())
-        logger.info("预期code===>> {}".format(expect_code))
-        logger.info("实际code===>> {}".format(res.status_code))
-        logger.info("预期msg===>> {}".format(expect_msg))
-        logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        header = {
+            "authToken": userToken,
+            "Content-Type": "application/json"
+        }
+        webUser = UserService()
+        res = webUser.userDelete(json=json_data, headers=header)
+        # logger.info(res)
+        # logger.info("预期code===>> {}".format(expect_code))
+        # logger.info("实际code===>> {}".format(res.status_code))
+        # logger.info("预期msg===>> {}".format(expect_msg))
+        # logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
+        sql = "select email from ezhome.all_login where email='test518@premom.com' ;"
+        result = db.select_db(sql)
+        # logger.info(result)
+        assert  result==()
+
+
+

@@ -135,13 +135,13 @@ TestLogin: # TestLogin is the name of the test suite
     parameters: # parameters that the test case accepts
       title, reasonType, appsflyerId, except_result, expect_code, expect_msg
     values:
-      - ["iOS-删除成功", "OTHERS", "", True, 200, "删除"]
+      - ["iOS", "OTHERS", "", True, 200, ""]
       - [
           "删除失败",
           "",
           "",
           True,
-          "TOKEN_ERR_FORCE_LOGOUT",
+          510,
           "Your account has been deleted. Please feel free to register again if necessary.",
         ]
 TestMember: # TestLogin is the name of the test suite
