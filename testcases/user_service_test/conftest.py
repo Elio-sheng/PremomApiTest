@@ -10,7 +10,7 @@ def userToken():
     json_data = {
       "anonymousId": "",
       "bindAnonymous": "true",
-      "email": "test518@premom.com",
+      "email": "test771@premom.com",
       "password": "123456",
       "phoneID": "decbb1ef-e41c-4cbd-9265-902415f00504",
       "platform": "iPhone XR 13.3",

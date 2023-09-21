@@ -81,8 +81,6 @@ TestLogin: # TestLogin is the name of the test suite
   #           510,
   #           '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}',
   #         ]
-
-  # TestRegister: # TestRegister is the name of the test suite
   #   test_userservice_register: # test_userservice_register is the name of the test case
   #     parameters: # parameters that the test case accepts
   #       title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
@@ -144,6 +142,12 @@ TestLogin: # TestLogin is the name of the test suite
           510,
           "Your account has been deleted. Please feel free to register again if necessary.",
         ]
+  test_userservice_myProfile:
+    parameters:
+      title, except_result, expect_code, expect_msg
+    values:
+      - ["查询成功", True, 200, "NeedConfirm"]
+
 TestMember: # TestLogin is the name of the test suite
   test_userservice_ismember: # test_userservice_login is the name of the test case
     parameters: # parameters that the test case accepts
