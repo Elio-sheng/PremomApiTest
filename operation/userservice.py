@@ -81,6 +81,20 @@ class User(object):
         # logger.info(result)
         assert  result==()
 
+    def myProfile(self, title, except_result, expect_code,expect_msg, userToken):
+        header = {
+            "appversion": "1.36.0",
+            "apiversion": "43",
+            "timezone":"Asia/Shanghai",
+            "language": "0",
+            "os": "iphone",
+            "authtoken": userToken
+        }
+        webUser = UserService()
+        res = webUser.userMyProfile(headers=header)
+        logger.info(res.json())
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
+
 class Member(object):
     #初始化数据
     # authToken = global_token()
