@@ -81,32 +81,32 @@ TestLogin: # TestLogin is the name of the test suite
   #           510,
   #           '{"code":"SIGN_INVALID_REGISTER_ACCOUNT","message":"Invalid account.","hideMsg":false,"noLog":true}',
   #         ]
-  #   test_userservice_register: # test_userservice_register is the name of the test case
-  #     parameters: # parameters that the test case accepts
-  #       title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
-  #     values:
-  #       - [
-  #           "ios-注册成功",
-  #           "test501@premom.com",
-  #           "123456",
-  #           "iPhone 13  Pro 15.3.1",
-  #           "Snd",
-  #           "Yeue",
-  #           True,
-  #           200,
-  #           "",
-  #         ]
-  #       - [
-  #           "重复注册",
-  #           "test500@premom.com",
-  #           "123456",
-  #           "iPhone 13  Pro 15.3.1",
-  #           "Snd",
-  #           "Yeue",
-  #           True,
-  #           510,
-  #           "This email has already been registered.",
-  #         ]
+    test_userservice_register: # test_userservice_register is the name of the test case
+       parameters: # parameters that the test case accepts
+         title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg
+       values:
+#         - [
+#             "ios-注册成功",
+#             "test501@premom.com",
+#             "123456",
+#             "iPhone 13  Pro 15.3.1",
+#             "Snd",
+#             "Yeue",
+#             True,
+#             200,
+#             "",
+#           ]
+         - [
+             "重复注册",
+             "test500@premom.com",
+             "123456",
+             "iPhone 13  Pro 15.3.1",
+             "Snd",
+             "Yeue",
+             True,
+             510,
+             "This email has already been registered.",
+           ]
   #       - [
   #           "邮箱为空",
   #           "",
