@@ -1,0 +1,6 @@
+TestMisc:
+  test_miscservice_homepage:
+    parameters:
+      title, pageName, except_result, expect_code, expect_msg
+    values:
+      - ["查询成功", "TTCHomepage", True, 200, "CycleAnalysisReport"]
