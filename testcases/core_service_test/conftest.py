@@ -7,9 +7,15 @@ from common.logger import logger
 from common.read_data import yaml
 from api.user import UserService
 
+# BASE_PATH = os.path.dirname(os.path.abspath(__file__)).split("PremomApiTest")[0]
 BASE_PATH = os.path.abspath(__file__).split("PremomApiTest")[0] + "PremomApiTest" + "\\"
-# logger.info(BASE_PATH)
-miscTestdata = None
+
+
+logger.info(BASE_PATH)
+
+coreTestdata = None
+print("####")
+print(BASE_PATH)
 
 
 def get_data(yaml_file_name):
@@ -39,14 +45,14 @@ def pytest_generate_tests(metafunc):
               - [valA1, valA2]          # Test cases
               - [valA2, valB2]
     """
-    global miscTestdata
-    if not miscTestdata:
+    global coreTestdata
+    if not coreTestdata:
         # Fetch testdata from YAML file
-        miscTestdata = get_data("miscservice_test_data.yml")
+        coreTestdata = get_data("coreservice_test_data.yml")
 
     classname = metafunc.cls.__name__
     funcname = metafunc.function.__name__
-    funcdata = miscTestdata.get(classname)[funcname]
+    funcdata = coreTestdata.get(classname)[funcname]
     if funcdata:
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
@@ -57,11 +63,11 @@ def pytest_generate_tests(metafunc):
 
 
 @pytest.fixture(scope="session", autouse=True)
-def misc_token():
+def core_token():
     json_data = {
         "anonymousId": "",
         "bindAnonymous": "true",
-        "email": "test773@premom.com",
+        "email": "t02@premom.com",
         "password": "123456",
         "phoneID": "decbb1ef-e41c-4cbd-9265-902415f00504",
         "platform": "iPhone XR 13.3",

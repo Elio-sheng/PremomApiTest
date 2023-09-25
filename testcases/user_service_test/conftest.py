@@ -7,7 +7,7 @@ from common.logger import logger
 from common.read_data import yaml
 from api.user import UserService
 
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__))).split("testcases")[1]
+BASE_PATH = os.path.abspath(__file__).split("PremomApiTest")[0] + "PremomApiTest" + "\\"
 logger.info(BASE_PATH)
 userTestdata = None
 
