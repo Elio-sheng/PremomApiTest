@@ -23,6 +23,7 @@ class UserService(RestClient):
         return self.request("/user/profile/get", method="GET", **kwargs)
 
     def userGuarantee(self, **kwargs):    
-        return self.request("/user/guarantee/subscribe", method="POST")
+        return self.request("/user/guarantee/subscribe", method="POST", **kwargs)
+
     def userIsmember(self, **kwargs):
         return self.request("/user/member/isMember", method="GET", **kwargs)

@@ -8,12 +8,12 @@ from common.read_data import yaml
 from api.user import UserService
 
 BASE_PATH = os.path.abspath(__file__).split("PremomApiTest")[0] + "PremomApiTest" + "\\"
-logger.info(BASE_PATH)
+# logger.info(BASE_PATH)
 userTestdata = None
 
 def get_data(yaml_file_name):
     data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
-    logger.info(data_file_path)
+    # logger.info(data_file_path)
     try:
         with open(data_file_path, 'r', encoding='utf-8') as file:
             yaml_data = yaml.safe_load(file)
