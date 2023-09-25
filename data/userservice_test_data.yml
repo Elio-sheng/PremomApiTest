@@ -148,6 +148,13 @@ TestLogin: # TestLogin is the name of the test suite
     values:
       - ["查询成功", True, 200, "NeedConfirm"]
 
+  test_userservice_guarantee:
+    parameters:
+      title, addFreeTestsActivity, params, except_result, expect_code, expect_msg
+    values:
+#      - ["首次加入包孕计划成功", true, "", True, 200, "firstSubscribe"]
+      - ["重复加入", true, "", True, 510, "Already subscribed."]
+
 TestMember: # TestLogin is the name of the test suite
   test_userservice_ismember: # test_userservice_login is the name of the test case
     parameters: # parameters that the test case accepts

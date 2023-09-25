@@ -61,8 +61,8 @@ class RestClient:
         # Extract the headers, params, files, and cookies from the kwargs
         headers = dict(**kwargs).get("headers")
         params = dict(**kwargs).get("params")
-        files = dict(**kwargs).get("params")
-        cookies = dict(**kwargs).get("params")
+        files = dict(**kwargs).get("files")
+        cookies = dict(**kwargs).get("cookies")
 
         # Log the details of the request
         self.request_log(url, method, data, json, params, headers, files, cookies)

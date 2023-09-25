@@ -11,11 +11,11 @@ from api.user import UserService
 BASE_PATH = os.path.abspath(__file__).split("PremomApiTest")[0] + "PremomApiTest" + "\\"
 
 
-logger.info(BASE_PATH)
+# logger.info(BASE_PATH)
 
 coreTestdata = None
-print("####")
-print(BASE_PATH)
+# print("####")
+# print(BASE_PATH)
 
 
 def get_data(yaml_file_name):
