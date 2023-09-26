@@ -95,30 +95,27 @@ class User(object):
         logger.info(res.json())
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
 
-    def userGuarantee(self, title, addFreeTestsActivity, params, except_result, expect_code, expect_msg):
+    def userGuarantee(self, title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken):
         json_data = {
                 "addFreeTestsActivity": addFreeTestsActivity,
                 "params": params
                     }
         header = {
-                "apiversion": "43",
-                "timezone": "Asia/Shanghai",
-                "language": "0",
-                "os": "iphone",
-                "appversion": "1.36.0",
                 "Content-Type": "application/json",
-                "authToken": "uta3d04abf6102000"
+                "authToken": userToken
                 }
-
         webUser = UserService()
         res = webUser.userGuarantee(headers=header, json=json_data)
-        logger.info(header)
-        logger.info(res)
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        sql = "UPDATE ezhome.guarantee SET `status`='2' where user_id='26774367';"   #退出包孕计划
+        result = db.select_db(sql)
+        # logger.info(result)
+
+
 
 class Member(object):
     #初始化数据
