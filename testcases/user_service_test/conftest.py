@@ -50,8 +50,8 @@ def pytest_generate_tests(metafunc):
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
         values = [tuple(v) if isinstance(v, list) else v for v in funcdata['values']]
-        # logger.info(f"Parameters: {parameters}")
-        # logger.info(f"Values: {values}")
+        logger.info(f"Parameters: {parameters}")
+        logger.info(f"Values: {values}")
         metafunc.parametrize(parameters, values)
 
 @pytest.fixture(scope="session", autouse=True)
