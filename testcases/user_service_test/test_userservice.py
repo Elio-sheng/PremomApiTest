@@ -2,7 +2,7 @@
 import pytest
 
 from common.logger import logger
-from operation.userservice import User, Member, Insemination
+from operation.userservice import User, Member
 
 userInstance = User()
 
@@ -47,14 +47,14 @@ class TestLogin(object):
     #     # Print a message to indicate the end of the test case
     #     logger.info("*************** 结束执行用例 ***************")
 
-    # def test_userservice_guarantee(self, title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken):
-    #     # Print a message to indicate the start of the test case
-    #     logger.info("*************** 开始执行用例 ***************")
-    #     result = userInstance.userGuarantee(title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken)
-    #     # Log the expected result, code, and message
-    #     logger.info(result)
-    #     # Print a message to indicate the end of the test case
-    #     logger.info("*************** 结束执行用例 ***************")
+    def test_userservice_guarantee(self, title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken):
+        # Print a message to indicate the start of the test case
+        logger.info("*************** 开始执行用例 ***************")
+        result = userInstance.userGuarantee(title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken)
+        # Log the expected result, code, and message
+        logger.info(result)
+        # Print a message to indicate the end of the test case
+        logger.info("*************** 结束执行用例 ***************")
     # @pytest.mark.skip
     # def test_userservice_userMemberV2PageInfo(self,pageType,platform,productInfos,receipt,zoneIdStr,expect_code,expect_msg):
     #     logger.info("*************** 开始执行用例 ***************")
@@ -62,12 +62,7 @@ class TestLogin(object):
     #     logger.info(result)
     #     logger.info("*************** 结束执行用例 ***************")
 
-class TestInsemination:
-    def test_userservice_InseminationAddOrUpdate(self, title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg):
-        logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().userInseminationAddOrUpdate(self, title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg)
-        logger.info(result)
-        logger.info("*************** 结束执行用例 ***************")
+
 
 # class TestMember():
 #     def test_userservice_ismember(self, title,except_result, expect_code, expect_msg,global_token):

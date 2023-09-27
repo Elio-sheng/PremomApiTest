@@ -31,5 +31,4 @@ class UserService(RestClient):
     def userMemberV2PageInfo(self, **kwargs):
         return self.request("/user/member/v2/page/info", method="POST", **kwargs)
 
-    def userInseminationAdd(self, **kwargs):
-        return self.request("/core/insemination/log/addOrUpdate", method="POST", **kwargs)
+
