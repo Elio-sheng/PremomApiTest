@@ -16,3 +16,6 @@ class CoreService(RestClient):
 
     def ShareAnalysis(self, **kwargs):   #分享用户周期分析报告
         return self.request("/core/cycle/report/share/analysis/link", method="POST", **kwargs)
+
+    def InseminationAdd(self, **kwargs):   #增加或更新受精记录
+        return self.request("/core/insemination/log/addOrUpdate", method="POST", **kwargs)
