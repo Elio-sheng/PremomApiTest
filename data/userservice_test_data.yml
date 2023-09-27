@@ -155,6 +155,19 @@ TestLogin: # TestLogin is the name of the test suite
       - ["首次加入包孕计划成功", true, "", True, 200, '"firstSubscribe":true']
 #      - ["重复加入", true, "", True, 510, "Already subscribed."]
 
+  test_userservice_userMemberV2PageInfo:  #此接口放弃！！！！！！
+    parameters:
+      pageType, platform, productInfos,receipt,zoneIdStr,expect_code,expect_msg
+    values:
+      - [MEMBERSHIP_LANDING_PAGE,GoogleStore,[],"",Asia/Shanghai,200,"regularModule"]
+
+TestInsemination:
+  test_userservice_InseminationAddOrUpdate:
+    parameters:
+      title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg
+    values:
+      - ["添加或更新成功", false, false, false, false, "AT_HOME", 200, id]
+
 TestMember: # TestLogin is the name of the test suite
   test_userservice_ismember: # test_userservice_login is the name of the test case
     parameters: # parameters that the test case accepts

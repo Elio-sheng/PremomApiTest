@@ -115,7 +115,51 @@ class User(object):
         result = db.select_db(sql)
         # logger.info(result)
 
+    def userV2PageInfo(self,pageType,platform,productInfos,receipt,zoneIdStr,expect_code,expect_msg):
+        header = {
+            "Content-Type": "application/json",
+            "authToken": "uta3e220d72102000",
+            "appVersion": "1.36.0",
+            "apiVersion":"43"
+            }
+        json_data = {
+            # "bannerPage": bannerPage,
+            "pageType": pageType,
+            "platform": platform,
+            "productInfos": productInfos,
+            "receipt": receipt,
+            # "type": type,
+            "zoneIdStr": zoneIdStr
+            }
+        webUser = UserService()
+        res = webUser.userMemberV2PageInfo(headers=header, json=json_data)
+        logger.info(res.text)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
 
+class Insemination:
+    def userInseminationAddOrUpdate(self, title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg):
+        header = {
+            "Content - Type": "application / json;charset = UTF - 8",
+            "authToken":"uta3e220d72102000"
+        }
+        json_data = {
+            "frozenSperm": frozenSperm,
+            "noInsemination": noInsemination,
+            "noneOfTheAbove": noneOfTheAbove,
+            "time": "2023-09-27",
+            "triggerShot": triggerShot,
+            "type": type
+        }
+        webUser = UserService()
+        res = webUser.userInseminationAdd(headers=header, json=json_data)
+        logger.info(res.text)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
 
 class Member(object):
     #初始化数据
