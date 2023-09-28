@@ -121,7 +121,6 @@ class User(object):
         result = db.select_db(sql)
         # logger.info(result)
 
-    def userV2PageInfo(self, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg):
     def membershipV2PageInfo(self, title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg, userToken):
         header = {
             "Content-Type": "application/json",
