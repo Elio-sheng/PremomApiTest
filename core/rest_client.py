@@ -24,7 +24,7 @@ class RestClient:
             config.read(data_file_path)
             cls.base_url = config.get('host', 'api_root_url')
         return cls.base_url
-    
+
     def __init__(self, **kwargs):
         # Initialize the RestClient object with the API root URL
         # Create a session object to handle HTTP requests
@@ -65,7 +65,8 @@ class RestClient:
         cookies = dict(**kwargs).get("cookies")
 
         # Log the details of the request
-        self.request_log(url, method, data, json, params, headers, files, cookies)
+        self.request_log(url, method, data, json,
+                         params, headers, files, cookies)
 
         if method == "GET":
             # Send a GET request using the session object
@@ -97,19 +98,24 @@ class RestClient:
         logger.info("接口请求方式 ==>> {}".format(method))
 
         # Log the API request headers
-        logger.info("接口请求头 ==>> {}".format(complexjson.dumps(headers, indent=4, ensure_ascii=False)))
+        logger.info("接口请求头 ==>> {}".format(
+            complexjson.dumps(headers, indent=4, ensure_ascii=False)))
 
         # Log the API request params
-        logger.info("接口请求 params 参数 ==>> {}".format(complexjson.dumps(params, indent=4, ensure_ascii=False)))
+        logger.info("接口请求 params 参数 ==>> {}".format(
+            complexjson.dumps(params, indent=4, ensure_ascii=False)))
 
         # Log the API request data
-        logger.info("接口请求体 data 参数 ==>> {}".format(complexjson.dumps(data, indent=4, ensure_ascii=False)))
+        logger.info("接口请求体 data 参数 ==>> {}".format(
+            complexjson.dumps(data, indent=4, ensure_ascii=False)))
 
         # Log the API request JSON payload
-        logger.info("接口请求体 json 参数 ==>> {}".format(complexjson.dumps(json, indent=4, ensure_ascii=False)))
+        logger.info("接口请求体 json 参数 ==>> {}".format(
+            complexjson.dumps(json, indent=4, ensure_ascii=False)))
 
         # Log the API request files (attachments)
         logger.info("接口上传附件 files 参数 ==>> {}".format(files))
 
         # Log the API request cookies
-        logger.info("接口 cookies 参数 ==>> {}".format(complexjson.dumps(cookies, indent=4, ensure_ascii=False)))
+        logger.info("接口 cookies 参数 ==>> {}".format(
+            complexjson.dumps(cookies, indent=4, ensure_ascii=False)))

@@ -10,6 +10,7 @@ import re
 
 core = CoreService()
 
+
 class Report:
     def AnalysisList(self, title,  except_result, expect_code, expect_msg, core_token):
         header = {
@@ -24,14 +25,13 @@ class Report:
         res = core.AnalysisList(headers=header)
         logger.info(res)
 
-
         #
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
-
+        ResultBase(res, expect_code, expect_msg,
+                   expect_msg, res)  # 断言code和message
 
     def CycleStatus(self, title, cycleNumber, except_result, expect_code, expect_msg, core_token):
         header = {
@@ -50,9 +50,10 @@ class Report:
         # logger.info("实际code===>> {}".format(res.status_code))
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg,
+                   expect_msg, res)  # 断言code和message
 
-    def ShareAnalysis(self, title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg, core_token):
+    def ShareAnalysis(self, title, cycleNumber, email, cycleEndNumber, id, except_result, expect_code, expect_msg, core_token):
         header = {
             "apiVersion": '42',
             "appVersion": '1.35.0',
@@ -74,13 +75,15 @@ class Report:
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg,
+                   expect_msg, res)  # 断言code和message
+
 
 class Insemination():
     def inseminationAddOrUpdate(self, title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token):
         header = {
             "Content - Type": "application / json;charset = UTF - 8",
-            "authToken":core_token
+            "authToken": core_token
         }
         json_data = {
             "frozenSperm": frozenSperm,

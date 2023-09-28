@@ -7,22 +7,22 @@ class UserService(RestClient):
     def __init__(self, base_url=None, **kwargs):
         super().__init__(base_url=base_url)
 
-    def webUserLogin(self, **kwargs):   
+    def webUserLogin(self, **kwargs):
         return self.request("/user/user/web/sign/in", method="POST", **kwargs)
 
-    def thirdUserLogin(self, **kwargs):    
+    def thirdUserLogin(self, **kwargs):
         return self.request("/user/web/sign/in/third", method="POST", **kwargs)
 
-    def webRegister(self, **kwargs):     
+    def webRegister(self, **kwargs):
         return self.request("/user/user/sign/up", method="POST", **kwargs)
 
-    def userDelete(self, **kwargs):  
+    def userDelete(self, **kwargs):
         return self.request("/user/user/cancellation/account/delete/reason", method="POST", **kwargs)
 
-    def userMyProfile(self, **kwargs):   
+    def userMyProfile(self, **kwargs):
         return self.request("/user/profile/get", method="GET", **kwargs)
 
-    def userGuarantee(self, **kwargs):    
+    def userGuarantee(self, **kwargs):
         return self.request("/user/guarantee/subscribe", method="POST", **kwargs)
 
     def userIsmember(self, **kwargs):
@@ -30,5 +30,3 @@ class UserService(RestClient):
 
     def userMemberV2PageInfo(self, **kwargs):
         return self.request("/user/member/v2/page/info", method="POST", **kwargs)
-
-

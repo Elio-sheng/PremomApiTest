@@ -7,19 +7,22 @@ from common.logger import logger
 from common.read_data import yaml
 from api.user import UserService
 
-# BASE_PATH = os.path.dirname(os.path.abspath(__file__)).split("PremomApiTest")[0]
-BASE_PATH = os.path.abspath(__file__).split("PremomApiTest")[0] + "PremomApiTest" + "\\"
+# 获取当前文件所在的目录路径
+current_directory = os.path.dirname(os.path.abspath(__file__))
+# 获取上一级目录的路径
+parent_directory = os.path.dirname(current_directory)
+# 获取上上一级目录的路径
+grandparent_directory = os.path.dirname(parent_directory)
+# 拼接文件路径，跨平台支持
+BASE_PATH = os.path.join(grandparent_directory, "data")
+logger.info(BASE_PATH)
 
-
-# logger.info(BASE_PATH)
 
 coreTestdata = None
-# print("####")
-# print(BASE_PATH)
 
 
 def get_data(yaml_file_name):
-    data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
+    data_file_path = os.path.join(BASE_PATH, yaml_file_name)
     logger.info(data_file_path)
     try:
         with open(data_file_path, 'r', encoding='utf-8') as file:
@@ -56,13 +59,14 @@ def pytest_generate_tests(metafunc):
     if funcdata:
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
-        values = [tuple(v) if isinstance(v, list) else v for v in funcdata['values']]
+        values = [tuple(v) if isinstance(v, list)
+                  else v for v in funcdata['values']]
         logger.info(f"Parameters: {parameters}")
         logger.info(f"Values: {values}")
         metafunc.parametrize(parameters, values)
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="module", autouse=True)
 def core_token():
     json_data = {
         "anonymousId": "",

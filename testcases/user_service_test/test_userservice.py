@@ -6,13 +6,15 @@ from operation.userservice import User, Member
 
 userInstance = User()
 
+
 class TestLogin(object):
 
     def test_userservice_login(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code, expect_msg):
         # Print a message to indicate the start of the test case
         logger.info("*************** 开始执行用例 ***************")
         # Call the webUserLogin function with the provided parameters
-        result = userInstance.webUserLogin(title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg)
+        result = userInstance.webUserLogin(title, anonymousId, bindAnonymous, email,
+                                           password, phoneID, platform, timeZone, except_result, expect_code, expect_msg)
         # Log the expected result, code, and message
         logger.info(result)
         # Print a message to indicate the end of the test case
@@ -50,7 +52,8 @@ class TestLogin(object):
     def test_userservice_guarantee(self, title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken):
         # Print a message to indicate the start of the test case
         logger.info("*************** 开始执行用例 ***************")
-        result = userInstance.userGuarantee(title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken)
+        result = userInstance.userGuarantee(
+            title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken)
         # Log the expected result, code, and message
         logger.info(result)
         # Print a message to indicate the end of the test case
@@ -61,7 +64,6 @@ class TestLogin(object):
     #     result = userInstance.userV2PageInfo(self,pageType,platform,productInfos,receipt,zoneIdStr,expect_code,expect_msg)
     #     logger.info(result)
     #     logger.info("*************** 结束执行用例 ***************")
-
 
 
 # class TestMember():
