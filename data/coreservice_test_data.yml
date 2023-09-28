@@ -21,4 +21,4 @@ TestInsemination:
     parameters:
       title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg
     values:
-      - ["rrr", false, false, false, false, "AT_HOME", 200, id]
+      - ["添加或更新成功", false, false, false, false, "AT_HOME", 200, id]

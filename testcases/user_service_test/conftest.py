@@ -8,12 +8,12 @@ from common.read_data import yaml
 from api.user import UserService
 
 BASE_PATH = os.path.abspath(__file__).split("PremomApiTest")[0] + "PremomApiTest" + "\\"
-logger.info(BASE_PATH)
+# logger.info(BASE_PATH)
 userTestdata = None
 
 def get_data(yaml_file_name):
     data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
-    logger.info(data_file_path)
+    # logger.info(data_file_path)
     try:
         with open(data_file_path, 'r', encoding='utf-8') as file:
             yaml_data = yaml.safe_load(file)
@@ -50,8 +50,8 @@ def pytest_generate_tests(metafunc):
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
         values = [tuple(v) if isinstance(v, list) else v for v in funcdata['values']]
-        # logger.info(f"Parameters: {parameters}")
-        # logger.info(f"Values: {values}")
+        logger.info(f"Parameters: {parameters}")
+        logger.info(f"Values: {values}")
         metafunc.parametrize(parameters, values)
 
 @pytest.fixture(scope="session", autouse=True)
@@ -59,7 +59,7 @@ def userToken():
     json_data = {
       "anonymousId": "",
       "bindAnonymous": "true",
-      "email": "test771@premom.com",
+      "email": "test777@premom.com",
       "password": "123456",
       "phoneID": "decbb1ef-e41c-4cbd-9265-902415f00504",
       "platform": "iPhone XR 13.3",
