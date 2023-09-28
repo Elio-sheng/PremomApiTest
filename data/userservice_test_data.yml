@@ -148,6 +148,22 @@ TestLogin: # TestLogin is the name of the test suite
     values:
       - ["查询成功", True, 200, "NeedConfirm"]
 
+  test_userservice_guarantee:
+    parameters:
+      title, addFreeTestsActivity, params, except_result, expect_code, expect_msg
+    values:
+      - ["首次加入包孕计划成功", true, "", True, 200, '"firstSubscribe":true']
+#      - ["重复加入", true, "", True, 510, "Already subscribed."]
+
+  test_userservice_userMemberV2PageInfo:
+    parameters:
+      title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg
+    values:
+      - ["获取membership页面", MEMBERSHIP_LANDING_PAGE, GoogleStore, [], "", Asia/Shanghai, 200, "MEMBERSHIP_LANDING_PAGE"]
+      - ["获取onboarding页面", ONBOARDING_PAGE, GoogleStore, [], "", Asia/Shanghai, 200, "ONBOARDING_PAGE"]
+      - ["获取simple页面", SIMPER_LANDING_PAGE, GoogleStore, [], "", Asia/Shanghai, 200, "SIMPER_LANDING_PAGE"]
+
+
 TestMember: # TestLogin is the name of the test suite
   test_userservice_ismember: # test_userservice_login is the name of the test case
     parameters: # parameters that the test case accepts

@@ -15,3 +15,10 @@ TestReport:
       title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg
     values:
       - [ "分享用户周期分析报告失败", 3, 1490856038@qq.com,8,1,True, 510, "\"code\":\"ERR_UNKNOW_ERROR\"" ]
+
+TestInsemination:
+  test_coreservice_InseminationAddOrUpdate:
+    parameters:
+      title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg
+    values:
+      - ["rrr", false, false, false, false, "AT_HOME", 200, id]

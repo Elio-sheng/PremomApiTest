@@ -35,7 +35,7 @@ class User(object):
             "platform": platform,
             "timeZone": timeZone,
         }
-        logger.info(json_data)
+        # logger.info(json_data)
         header = {
             "Content-Type": "application/json"
         }
@@ -94,6 +94,52 @@ class User(object):
         res = webUser.userMyProfile(headers=header)
         logger.info(res.json())
         ResultBase(res, expect_code, expect_msg, expect_msg, res)   #断言code和message
+
+    def userGuarantee(self, title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken):
+        json_data = {
+                "addFreeTestsActivity": addFreeTestsActivity,
+                "params": params
+                    }
+        header = {
+                "Content-Type": "application/json",
+                "authToken": userToken
+                }
+        webUser = UserService()
+        res = webUser.userGuarantee(headers=header, json=json_data)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        sql = "UPDATE ezhome.guarantee SET `status`='2' where user_id='26774367';"   #退出包孕计划
+        result = db.select_db(sql)
+        # logger.info(result)
+
+    def membershipV2PageInfo(self, title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg, userToken):
+        header = {
+            "Content-Type": "application/json",
+            "authToken": userToken,
+            "appVersion": "1.36.0",
+            "apiVersion":"43"
+            }
+        json_data = {
+            # "bannerPage": bannerPage,
+            "pageType": pageType,
+            "platform": platform,
+            "productInfos": productInfos,
+            "receipt": receipt,
+            # "type": type,
+            "zoneIdStr": zoneIdStr
+            }
+        webUser = UserService()
+        res = webUser.userMemberV2PageInfo(headers=header, json=json_data)
+        # logger.info(res.text)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+
+
 
 class Member(object):
     #初始化数据

@@ -62,7 +62,7 @@ def pytest_generate_tests(metafunc):
         metafunc.parametrize(parameters, values)
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="class", autouse=True)
 def core_token():
     json_data = {
         "anonymousId": "",
