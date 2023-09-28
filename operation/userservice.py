@@ -154,7 +154,6 @@ class Member(object):
             "language": '0',
             "os": 'iphone',
             "timezone": 'Asia/Shanghai'
-
         }
         ismember = UserService()
         res = ismember.userIsmember(headers=header)
