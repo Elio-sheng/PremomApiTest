@@ -19,6 +19,7 @@ TestReport:
 TestInsemination:
   test_coreservice_InseminationAddOrUpdate:
     parameters:
-      title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg
+      title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg
     values:
-      - ["添加或更新成功", false, false, false, false, "AT_HOME", 200, id]
+      - ["添加成功", "", false, false, false, false, "AT_HOME", 200, "id"]
+      - ["更新成功", "738792128742723584", false, false, false, false, "AT_HOME", 200, "id"]

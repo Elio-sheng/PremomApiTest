@@ -28,8 +28,8 @@ class TestReport():
         logger.info("*************** 结束执行用例 ***************")
 
 class TestInsemination():
-    def test_coreservice_InseminationAddOrUpdate(self, title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg,core_token):
+    def test_coreservice_InseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg,core_token):
         logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().inseminationAddOrUpdate(title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code,expect_msg,core_token)
+        result = Insemination().inseminationAddOrUpdate(title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code,expect_msg,core_token)
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")

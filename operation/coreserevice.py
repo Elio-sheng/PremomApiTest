@@ -7,6 +7,8 @@ from core.result_base import ResultBase
 from api.core import CoreService
 from common.logger import logger
 import re
+from datetime import datetime
+
 
 core = CoreService()
 
@@ -77,16 +79,19 @@ class Report():
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
 class Insemination():
-    def inseminationAddOrUpdate(self, title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token):
+    def inseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token):
+
         header = {
-            "Content - Type": "application / json;charset = UTF - 8",
+            "Content-Type": "application/json;charset=UTF-8",
             "authToken":core_token
         }
         json_data = {
+            "id": id,
             "frozenSperm": frozenSperm,
             "noInsemination": noInsemination,
             "noneOfTheAbove": noneOfTheAbove,
-            "time": "2023-09-27",
+            "time": "2023-09-28",
+            "triggerShotDate":"2023-09-28",
             "triggerShot": triggerShot,
             "type": type
         }
@@ -96,3 +101,5 @@ class Insemination():
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
+        # ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
