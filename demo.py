@@ -2,16 +2,48 @@
 -*- coding: utf-8 -*-
 """
 import requests
+true= True
 
-
-def home():
-    url = "http://api.test.premom.tech/misc/homepage/manager/App/viewModulesNew?pageName=TTCHomepage"
+def member():
+    url = "http://api.test.premom.tech/user/member/v2/page/info"
     header = {
-        "appVersion":"1.35.0",
-        "Content-Type":"application/x-www-form-urlencoded",
-        "authToken":"uta38c7f1ef902000"
+        "apiversion": "43",
+        "timezone": "Asia/Shanghai",
+        "language": "0",
+        "os": "iphone",
+        "appversion": "1.36.0",
+        "Content-Type": "application/json",
+        "authToken":"uta3e220d72102000"
     }
-    res = requests.get(url = url, headers = header)
-    print(res.text)
+    data = {
+        "pageType": "MEMBERSHIP_LANDING_PAGE",
+        "zoneIdStr": "Asia/Shanghai",
+        "productInfos": [],
+        "receipt": "",
+        "platform": "GoogleStore"
+    }
+    res = requests.post(url = url, headers = header, json=data)
+    print(res.json())
 
-home()
+# member()
+
+
+
+from datetime import datetime
+
+current_date = datetime.now().date()
+# print(current_date)
+
+import json
+from datetime import date
+
+def datetime_encoder(obj):
+    if isinstance(obj, (date)):
+        return obj.isoformat()
+
+# 示例日期对象
+my_date = date.today()
+
+# 序列化为JSON字符串
+json_str = json.dumps(my_date, default=datetime_encoder)
+print(json_str)

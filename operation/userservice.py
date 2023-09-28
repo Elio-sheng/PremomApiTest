@@ -7,9 +7,8 @@ from common.logger import logger
 import os
 from common.mysql_operate import db
 
-
 class User(object):
-    def webUserLogin(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code, expect_msg):
+    def webUserLogin(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg):
         """
         Register user information.
 
@@ -141,11 +140,7 @@ class User(object):
         }
         webUser = UserService()
         res = webUser.userMemberV2PageInfo(headers=header, json=json_data)
-        # logger.info(res.text)
-        logger.info("预期code===>> {}".format(expect_code))
-        logger.info("实际code===>> {}".format(res.status_code))
-        logger.info("预期msg===>> {}".format(expect_msg))
-        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
 
 class Member(object):
