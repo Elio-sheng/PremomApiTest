@@ -11,7 +11,7 @@ import re
 core = CoreService()
 
 
-class Report:
+class Report():
     def AnalysisList(self, title,  except_result, expect_code, expect_msg, core_token):
         header = {
             "apiVersion": '42',

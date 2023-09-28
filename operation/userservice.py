@@ -123,9 +123,10 @@ class User(object):
         # logger.info(result)
 
     def userV2PageInfo(self, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg):
+    def membershipV2PageInfo(self, title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg, userToken):
         header = {
             "Content-Type": "application/json",
-            "authToken": "uta3e220d72102000",
+            "authToken": userToken,
             "appVersion": "1.36.0",
             "apiVersion": "43"
         }
@@ -140,7 +141,7 @@ class User(object):
         }
         webUser = UserService()
         res = webUser.userMemberV2PageInfo(headers=header, json=json_data)
-        logger.info(res.text)
+        # logger.info(res.text)
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))

@@ -59,11 +59,11 @@ class TestLogin(object):
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
     # @pytest.mark.skip
-    # def test_userservice_userMemberV2PageInfo(self,pageType,platform,productInfos,receipt,zoneIdStr,expect_code,expect_msg):
-    #     logger.info("*************** 开始执行用例 ***************")
-    #     result = userInstance.userV2PageInfo(self,pageType,platform,productInfos,receipt,zoneIdStr,expect_code,expect_msg)
-    #     logger.info(result)
-    #     logger.info("*************** 结束执行用例 ***************")
+    def test_userservice_userMemberV2PageInfo(self, title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg, userToken):
+        logger.info("*************** 开始执行用例 ***************")
+        result = userInstance.membershipV2PageInfo(title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg, userToken)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
 
 
 # class TestMember():
