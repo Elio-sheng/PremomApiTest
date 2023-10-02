@@ -78,7 +78,7 @@ class Report():
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
 class Insemination():
-    def inseminationAddOrUpdate(self, title, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token):
+    def inseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token):
         header = {
             "Content-Type": "application/json;charset=UTF-8",
             "authToken":core_token
@@ -99,5 +99,5 @@ class Insemination():
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        # ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
