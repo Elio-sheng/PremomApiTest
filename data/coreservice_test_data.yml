@@ -30,5 +30,7 @@ TestEzserver:
       title, menstruationRecord, expect_code, expect_msg
     values:
       - [ "算法请求成功", "10",  200, "" ]
+      - [ "算法请求成功", "0",  200, "" ]
+      - [ "算法请求成功", "15",  200, "" ]
 
 
