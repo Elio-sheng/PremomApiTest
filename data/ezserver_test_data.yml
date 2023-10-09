@@ -1,0 +1,8 @@
+TestEzserver:
+  test_ezserver_input_al:
+    parameters:
+      title, BBT, menstruationRecord, expect_code, expect_msg
+    values:
+      - ["算法请求成功", 36.55, "10",  200, '"code":200']
+      - ["算法请求成功", 36.55, "0",  200, '"code":200']
+      - ["算法请求成功", 36.55, "15",  200, '"code":200']

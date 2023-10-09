@@ -3,7 +3,7 @@
 """
 import pytest
 from common.logger import logger
-from operation.coreserevice import Report, Insemination, Ezserver
+from operation.coreserevice import Report, Insemination
 from api.user import UserService
 
 Core_request = Report()
@@ -28,17 +28,20 @@ class TestReport():
         logger.info("*************** 结束执行用例 ***************")
 
 class TestInsemination():
-    def test_coreservice_InseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg,core_token):
+    def test_coreservice_InseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token, get_current_date):
         logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().inseminationAddOrUpdate(title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code,expect_msg,core_token)
+        result = Insemination().inseminationAddOrUpdate(title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token, get_current_date)
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
 
-class TestEzserver():
-    def test_coreservice_InputAl(self,  title,menstruationRecord, expect_code, expect_msg,core_token):
-        logger.info("*************** 开始执行用例 ***************")
-        result = Ezserver().input_al(title,menstruationRecord, expect_code, expect_msg,core_token)
-        logger.info(result)
-        logger.info("*************** 结束执行用例 ***************")
+# class TestEzserver():
+#     def test_coreservice_InputAl(self,  title,menstruationRecord, expect_code, expect_msg,core_token):
+#         logger.info("*************** 开始执行用例 ***************")
+#         result = Ezserver().input_al(title,menstruationRecord, expect_code, expect_msg,core_token)
+#         logger.info(result)
+#         logger.info("*************** 结束执行用例 ***************")
+
+
+
 

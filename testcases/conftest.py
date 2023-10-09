@@ -38,19 +38,19 @@ logger.info(BASE_PATH)
 # 定义一个 pytest fixture 函数，用于加载 Excel 数据
 
 
-@pytest.fixture(scope="module", autouse=True)
-def excel_data():
-    # 指定 Excel 文件路径
-    excel_file_path = os.path.join(
-        BASE_PATH, "AutoPytestExecl.xlsx")  # 请替换为你的 Excel 文件路径
-
-    logger.info(BASE_PATH)
-    # 创建 ReadExcel 类的实例
-    excel_reader = ReadExcel(excel_file_path)
-
-    # 读取 Excel 数据（示例中使用 "ceshi" 工作表）
-    sheet_name = "ceshi"  # 请替换为你的工作表名字
-    data = excel_reader.read_excel(sheet_name)
-    logger.info(data)
-    # 返回读取到的数据，供测试函数使用
-    yield data
+# @pytest.fixture(scope="module", autouse=True)
+# def excel_data():
+#     # 指定 Excel 文件路径
+#     excel_file_path = os.path.join(
+#         BASE_PATH, "AutoPytestExecl.xlsx")  # 请替换为你的 Excel 文件路径
+#
+#     logger.info(BASE_PATH)
+#     # 创建 ReadExcel 类的实例
+#     excel_reader = ReadExcel(excel_file_path)
+#
+#     # 读取 Excel 数据（示例中使用 "ceshi" 工作表）
+#     sheet_name = "ceshi"  # 请替换为你的工作表名字
+#     data = excel_reader.read_excel(sheet_name)
+#     logger.info(data)
+#     # 返回读取到的数据，供测试函数使用
+#     yield data
