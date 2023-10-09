@@ -101,3 +101,53 @@ class Insemination():
         logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
+class Ezserver():
+    def input_al(self, title, menstruationRecord,expect_code, expect_msg, core_token):
+        header = {
+            "Content-Type": "application/json",
+            "apiVersion": '43',
+            "appVersion": '1.36.0',
+            "authToken": core_token,
+            "os": 'iphone'
+
+        }
+        json_data = {
+                "param": {
+                    "version": 1
+                },
+                "userData": {
+                    "userAverageLuteumLength": 14,
+                    "userAverageCycleLength": 28,
+                    "userAverageMenstruationLength": 5,
+                    "userCycleRegularity": 1,
+                    "userCycleLengthError": 4
+                },
+                "daysInput": [{
+                    "cervicalMunusRecord": 0,
+                    "ovulationResultByLH": 0,
+                    "dayOfCycle": 0,
+                    "ovulationResultByUser": 0,
+                    "menstruationRecord": menstruationRecord,
+                    "timestamp": 1696132800,
+                    "BBT": 0,
+                    "impactTempFlag": 0
+                }, {
+                    "BBT": 0,
+                    "ovulationResultByLH": 0,
+                    "impactTempFlag": 0,
+                    "menstruationRecord": 10,
+                    "dayOfCycle": 0,
+                    "cervicalMunusRecord": 0,
+                    "ovulationResultByUser": 0,
+                    "timestamp": 1696219200
+                }],
+                "debug": 0
+        }
+        res = core.InputAl(headers=header, json=json_data)
+        logger.info(res.text)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+

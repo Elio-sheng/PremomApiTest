@@ -19,3 +19,5 @@ class CoreService(RestClient):
 
     def InseminationAdd(self, **kwargs):   #增加或更新受精记录
         return self.request("/core/insemination/log/addOrUpdate", method="POST", **kwargs)
+    def InputAl(self,**kwargs):    #V2算法接口
+        return self.request("/ezserver/api/fam/input_al",method="POST",**kwargs)
