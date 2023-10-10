@@ -106,7 +106,7 @@ class Insemination():
         logger.info(sql_res)
 
 
-    def inseminationDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+    def inseminationDataGet(self):
         pass
 
 
