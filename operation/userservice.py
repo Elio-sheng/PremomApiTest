@@ -49,7 +49,7 @@ class User(object):
         ResultBase(res, expect_code, expect_msg,
                    expect_msg, res)  # 断言code和message
 
-    def webRegister(self, title, email, password, OSType, lastName, firstName, except_result, expect_code, expect_msg):
+    def webRegister(self, title, email, password, OSType, lastName, firstName, expect_code, expect_msg):
         json_data = {
             "email": email,
             "password": password,

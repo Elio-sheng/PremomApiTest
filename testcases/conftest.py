@@ -33,7 +33,7 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 parent_directory = os.path.dirname(current_directory)
 # 拼接文件路径，跨平台支持
 BASE_PATH = os.path.join(parent_directory, "data")
-logger.info(BASE_PATH)
+# logger.info(BASE_PATH)
 
 # 定义一个 pytest fixture 函数，用于加载 Excel 数据
 

@@ -34,13 +34,15 @@ class TestInsemination():
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
+    def test_coreservice_inseminationDataGet(self):
+        pass
 
-# class TestEzserver():
-#     def test_coreservice_InputAl(self,  title,menstruationRecord, expect_code, expect_msg,core_token):
-#         logger.info("*************** 开始执行用例 ***************")
-#         result = Ezserver().input_al(title,menstruationRecord, expect_code, expect_msg,core_token)
-#         logger.info(result)
-#         logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreservice_dailyRecordGetSetting(self):
+        pass
+
+    def test_coreservice_inseminationGetTip(self):
+        pass
 
 
 
