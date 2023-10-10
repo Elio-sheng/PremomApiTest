@@ -97,6 +97,10 @@ class User(object):
         webUser = UserService()
         res = webUser.userMyProfile(headers=header)
         logger.info(res.json())
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg,
                    expect_msg, res)  # 断言code和message
 
@@ -141,6 +145,35 @@ class User(object):
         res = webUser.userMemberV2PageInfo(headers=header, json=json_data)
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
+    def profileInfoUpdate(self,title,birthYear,cycleLength,firstName,periodLength,except_result, expect_code, expect_msg, userToken):
+        """_summary_
+
+        Args:
+            birthYear (_type_): Update birthYear infomation
+            cycleLength (_type_): Update cycleLength infomation
+            firstName (_type_): Update firstName infomation
+            periodLength (_type_): Update periodLength infomation
+        """
+        json_data={
+            "birthYear":birthYear,
+            "cycleLength":cycleLength,
+            "firstName":firstName,
+            "periodLength":periodLength
+        }
+        header={
+            "Content-Type": "application/json",
+            "authToken": userToken,
+            "appVersion": "1.36.0",
+            "apiVersion": "43"
+        }
+        webUser=UserService()
+        res=webUser.userProfileInfoUpdate(json=json_data,headers=header)
+        logger.info(res.json())
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
 class Member(object):
     # 初始化数据

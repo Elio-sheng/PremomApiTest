@@ -58,6 +58,17 @@ class TestLogin(object):
         logger.info(result)
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
+        
+    def test_userservice_myProfile(self, title, except_result, expect_code, expect_msg, userToken):
+        logger.info("*************** 开始执行用例 ***************")
+        result = userInstance.myProfile(
+            title, except_result, expect_code, expect_msg, userToken)
+        # Log the expected result, code, and message
+        logger.info(result)
+        # Print a message to indicate the end of the test case
+        logger.info("*************** 结束执行用例 ***************")
+        
+        
     # @pytest.mark.skip
     def test_userservice_userMemberV2PageInfo(self, title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg, userToken):
         logger.info("*************** 开始执行用例 ***************")
@@ -65,7 +76,13 @@ class TestLogin(object):
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
-
+    def test_userservice_profileinfoupdate(self,title,birthYear,cycleLength,firstName,periodLength,except_result, expect_code, expect_msg, userToken):
+        logger.info("*************** 开始执行用例 ***************")
+        result=userInstance.profileInfoUpdate(title,birthYear,cycleLength,firstName,periodLength,except_result, expect_code, expect_msg, userToken)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+        
+    
 # class TestMember():
 #     def test_userservice_ismember(self, title,except_result, expect_code, expect_msg,global_token):
 #         # Print a message to indicate the start of the test case
@@ -76,3 +93,4 @@ class TestLogin(object):
 #         logger.info(result)
 #         # Print a message to indicate the end of the test case
 #         logger.info("*************** 结束执行用例 ***************")
+
