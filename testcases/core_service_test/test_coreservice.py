@@ -34,15 +34,15 @@ class TestInsemination():
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
-    def test_coreservice_inseminationDataGet(self):
-        pass
-
-
-    def test_coreservice_dailyRecordGetSetting(self):
-        pass
-
-    def test_coreservice_inseminationGetTip(self):
-        pass
+    # def test_coreservice_inseminationDataGet(self):
+    #     pass
+    #
+    #
+    # def test_coreservice_dailyRecordGetSetting(self):
+    #     pass
+    #
+    # def test_coreservice_inseminationGetTip(self):
+    #     pass
 
 
 
