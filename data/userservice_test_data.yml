@@ -152,22 +152,56 @@ TestLogin: # TestLogin is the name of the test suite
 #      - ["重复加入", true, "", True, 510, "Already subscribed."]
 
   test_userservice_userMemberV2PageInfo:
-    parameters:
-      title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg
+    parameters: title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg
     values:
-      - ["获取membership页面", MEMBERSHIP_LANDING_PAGE, GoogleStore, [], "", Asia/Shanghai, 200, "MEMBERSHIP_LANDING_PAGE"]
-      - ["获取onboarding页面", ONBOARDING_PAGE, GoogleStore, [], "", Asia/Shanghai, 200, "ONBOARDING_PAGE"]
-      - ["获取simple页面", SIMPER_LANDING_PAGE, GoogleStore, [], "", Asia/Shanghai, 200, "SIMPER_LANDING_PAGE"]
+      - [
+          "获取membership页面",
+          MEMBERSHIP_LANDING_PAGE,
+          GoogleStore,
+          [],
+          "",
+          Asia/Shanghai,
+          200,
+          "MEMBERSHIP_LANDING_PAGE",
+        ]
+      - [
+          "获取onboarding页面",
+          ONBOARDING_PAGE,
+          GoogleStore,
+          [],
+          "",
+          Asia/Shanghai,
+          200,
+          "ONBOARDING_PAGE",
+        ]
+      - [
+          "获取simple页面",
+          SIMPER_LANDING_PAGE,
+          GoogleStore,
+          [],
+          "",
+          Asia/Shanghai,
+          200,
+          "SIMPER_LANDING_PAGE",
+        ]
 
+  test_userservice_profileinfoupdate:
+    parameters: title,birthYear,cycleLength,firstName,periodLength,except_result, expect_code, expect_msg
+    values:
+      - [
+          "更新用户姓名等相关信息",
+          1997,
+          25,
+          "Aaa",
+          6,
+          "",
+          200,
+          '"firstName":"Aaa"',
+        ]
 
 TestMember: # TestLogin is the name of the test suite
   test_userservice_ismember: # test_userservice_login is the name of the test case
     parameters: # parameters that the test case accepts
       title,  except_result, expect_code, expect_msg
     values: # values to be used for each parameter in the test case
-      - [
-          "是会员",
-          True,
-          200,
-          'true',
-        ]
+      - ["是会员", True, 200, "true"]
