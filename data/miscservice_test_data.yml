@@ -3,4 +3,9 @@ TestMisc:
     parameters:
       title, pageName, except_result, expect_code, expect_msg
     values:
-      - ["查询成功", "TTCHomepage", True, 200, "CycleAnalysisReport"]
+      - [ "查询成功", "TTCHomepage", True, 200, "CycleAnalysisReport" ]
+  test_miscservice_getreminder:
+    parameters:
+      title, mode, except_result, expect_code, expect_msg
+    values:
+      - [ "Reminder数据查询成功","TTC","",200,'"title":"Ovulation Test"' ]

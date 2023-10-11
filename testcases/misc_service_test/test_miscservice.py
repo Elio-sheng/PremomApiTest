@@ -17,3 +17,11 @@ class TestMisc():
         logger.info(result)
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
+
+    def test_miscservice_getreminder(self, title, mode, except_result, expect_code, expect_msg, misc_token):
+        logger.info("*************** 开始执行用例 ***************")
+        result = misc_request.getreminder(
+            title, mode, except_result, expect_code, expect_msg, misc_token)
+        logger.info(result)
+        # Print a message to indicate the end of the test case
+        logger.info("*************** 结束执行用例 ***************")
