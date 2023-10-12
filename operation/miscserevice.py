@@ -9,6 +9,7 @@ from common.logger import logger
 
 misc = MiscService()
 
+
 class Misc:
 
     def homepage(self, title, pageName, except_result, expect_code, expect_msg, misc_token):
@@ -21,7 +22,7 @@ class Misc:
             "os": "iphone",
             "authtoken": misc_token
         }
-        data = {"pageName":pageName}
+        data = {"pageName": pageName}
         res = misc.appHomepage(headers=header, params=data)
         # logger.info(res)
         # logger.info("预期code===>> {}".format(expect_code))
@@ -29,3 +30,22 @@ class Misc:
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def getreminder(self, title, mode, except_result, expect_code, expect_msg, misc_token):
+        header = {
+            "Content-Type": "application/json",
+            "appversion": "1.36.0",
+            "apiversion": "43",
+            "timezone": "Asia/Shanghai",
+            "language": "0",
+            "os": "iphone",
+            "authtoken": misc_token
+        }
+        data = {"mode": mode}
+        res = misc.getReminder(headers=header, params=data)
+        logger.info(res)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)

@@ -9,3 +9,6 @@ class MiscService(RestClient):
 
     def appHomepage(self, **kwargs):   #获取home页面信息
         return self.request("/misc/homepage/manager/App/viewModulesNew", method="GET", **kwargs)
+    
+    def getReminder(self, **kwargs):  #获取Reminder的数据
+        return self.request("/misc/reminder/get", method="GET", **kwargs)
