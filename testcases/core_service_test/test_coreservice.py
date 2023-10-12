@@ -34,15 +34,24 @@ class TestInsemination():
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
-    # def test_coreservice_inseminationDataGet(self):
-    #     pass
-    #
-    #
-    # def test_coreservice_dailyRecordGetSetting(self):
-    #     pass
-    #
-    # def test_coreservice_inseminationGetTip(self):
-    #     pass
+    def test_coreservice_inseminationDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().inseminationDataGet(title, recordDate, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreservice_dailyRecordGetSetting(self, title, expect_code, expect_msg, core_token):
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().dailyRecordGetSetting(title,  expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+
+    def test_coreservice_inseminationGetTip(self, title, editCycle, editDate, expect_code, expect_msg, core_token):
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().inseminationGetTip(title, editCycle, editDate, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
 
 
 

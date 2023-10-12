@@ -24,11 +24,20 @@ TestInsemination:
       - ["添加成功", "", false, false, false, false, "AT_HOME", 200, "id"]
 #      - ["更新成功", "738792128742723584", false, false, false, false, "AT_HOME", 200, "id"]
 
-#  test_coreservice_inseminationDataGet:
-#    parameters:
-#      title, recordDate, expect_code, expect_msg
-#    values:
-#      - ["获取成功", "2023-10-10", 200, ""]
+  test_coreservice_inseminationDataGet:
+    parameters:
+      title, recordDate, expect_code, expect_msg
+    values:
+      - ["获取成功", "2023-09-28", 200, "2023-09-28"]
 
+  test_coreservice_dailyRecordGetSetting:
+    parameters:
+      title, expect_code, expect_msg
+    values:
+      - ["查询成功", 200, '"settingType":']
 
-
+  test_coreservice_inseminationGetTip:
+    parameters:
+      title, editCycle, editDate, expect_code, expect_msg
+    values:
+      - ["获取成功", 0, "2023-10-11", 200, "Is this an insemination cycle"]

@@ -101,18 +101,49 @@ class Insemination():
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
-        sql = 'DELETE FROM core.insemination_log WHERE user_id = 26332287 AND time LIKE"2023-10-10%";'
+        sql = 'DELETE FROM core.insemination_log WHERE user_id = 26332287 AND time LIKE"2023-10-1%";'
+        sql2 = 'select * from core.insemination_log WHERE user_id = 26332287;'
         sql_res = db.select_db(sql)
+        sql_res2 = db.select_db(sql2)
+        logger.info(sql_res2)
         logger.info(sql_res)
 
 
-    def inseminationDataGet(self):
-        pass
+    def inseminationDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        data = {
+            "recordDate":recordDate
+        }
+        res = core.inseminationDataGet(headers=header, params=data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
 
-    def dailyRecordGetSetting(self):
-        pass
-
-    def inseminationGetTip(self):
-        pass
+    def dailyRecordGetSetting(self, title, expect_code, expect_msg, core_token):
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        res = core.dailyRecordGetSetting(headers=header)
+        logger.info(res.text)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+    def inseminationGetTip(self, title, editCycle, editDate, expect_code, expect_msg, core_token):
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        data = {
+            "editCycle":editCycle,
+            "editDate":editDate
+        }
+        res = core.inseminationGetTip(headers=header,params=data)
+        # logger.info(res.text)
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
