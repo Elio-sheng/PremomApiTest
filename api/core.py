@@ -28,3 +28,9 @@ class CoreService(RestClient):
 
     def inseminationGetTip(self, **kwargs):   #获取提示文案
         return self.request("/core/insemination/cycle/get/Tip", method="GET", **kwargs)
+
+    def ComparisonList(self, **kwargs):  # 获取周期比较报告列表
+        return self.request("/core/cycle/report/get/comparison/list", method="GET", **kwargs)
+
+    def ShareComparison(self, **kwargs):  # 分享用户周期比较报告
+        return self.request("/core/cycle/report/share/comparison/link", method="POST", **kwargs)
