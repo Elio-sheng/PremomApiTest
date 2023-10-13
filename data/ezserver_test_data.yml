@@ -1,8 +1,17 @@
 TestEzserver:
   test_ezserver_input_al:
     parameters:
+      #menstruationRecord：经期标记, 0未录经期 10经期时间 15孕期开始时间 17孕期结束时间 18顺产时间 20流产时间
       title, BBT, menstruationRecord, expect_code, expect_msg
     values:
       - ["算法请求成功", 36.55, "10",  200, '"code":200']
       - ["算法请求成功", 36.55, "0",  200, '"code":200']
       - ["算法请求成功", 36.55, "15",  200, '"code":200']
+      - ["算法请求成功", 36.55, "17",  200, '"code":200']
+      - ["算法请求成功", 36.55, "18",  200, '"code":200']
+      - ["算法请求成功", 36.55, "20",  200, '"code":200']
+  test_ezserver_addSignsRecords_json:
+    parameters:
+      title, notes, expect_code, expect_msg
+    values:
+      - ["算法请求成功", "這個問題真的很難\n但", 200, '"code":200']

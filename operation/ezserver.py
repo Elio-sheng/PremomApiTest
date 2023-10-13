@@ -131,3 +131,64 @@ class Ezserver:
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+
+    def addSignsRecords_json(self, title, notes, expect_code, expect_msg, ez_token):
+        header = {
+            "Content-Type": "application/json",
+            "authToken": ez_token
+        }
+        json_data = {
+            "records": [{
+                "editDate": "2023-10-12 18:23:16",
+                "homePageChartMessage": "",
+                "LHSurge": 0,
+                "pregnancyWeightUnit": 0,
+                "dailyLogs": {
+                    "sleepTime": 0,
+                    "others": 0,
+                    "aidedInsemination": 0,
+                    "cervicalMucus": 4,
+                    "exercise": 0,
+                    "cervicalTexture": 2,
+                    "moods": 0,
+                    "cervicalAmount": 0,
+                    "ferning": 0,
+                    "miscarriageBloodColors": 0,
+                    "miscarriageTexture": 0,
+                    "confirmBbtSpike": 0,
+                    "exerciseTime": 0,
+                    "notes": notes,
+                    "symptoms": 4096,
+                    "periodTexture": 0,
+                    "cervicalOpenness": 2,
+                    "dietarySupplement": 3,
+                    "periodBloodColors": 0,
+                    "hadSex": 49,
+                    "cervicalPosition": 2,
+                    "symptomLv": ",,,,,,,,,,,,Moderate,,,,,,,,,,,,"
+                },
+                "pregnancyWeight": "0.0",
+                "homePagePaperResult": "Low",
+                "papers": [],
+                "inWhichPeriod": 999,
+                "homePagePregancySuccessValue": 0,
+                "confirmBbtSpike": 0,
+                "temperatures": [],
+                "dayOfCycle": 0,
+                "confirmOvulation": 1,
+                "homePageChartTitle": "",
+                "periodProperty": 128,
+                "recordID": "7ABEC963-2C63-4F16-B612-FBF4241F0FE8",
+                "bbtSpike": 0,
+                "recordDate": "2023-10-12 12:00:00",
+                "pdgPositive": 0,
+                "homePageOvulation": -1
+            }],
+            "authToken": ez_token
+        }
+        res = EzserverService().addSignsRecords_json(headers=header, json=json_data)
+        logger.info(res)
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message

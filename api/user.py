@@ -31,5 +31,5 @@ class UserService(RestClient):
     def userMemberV2PageInfo(self, **kwargs):  # 会员onboarding或landing page2个页面的数据
         return self.request("/user/member/v2/page/info", method="POST", **kwargs)
     
-    def userProfileInfoUpdate(self,**kwargs): #更新用户的名字相关信息
+    def userProfileInfoUpdate(self,**kwargs): # 更新用户的名字相关信息
         return self.request("/user/profile/update",method="POST", **kwargs)
