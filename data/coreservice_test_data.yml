@@ -3,21 +3,20 @@ TestReport:
     parameters:
       title, except_result, expect_code, expect_msg
     values:
-      - [ "获取周期分析报告列表成功", True, 200, "\"cycleNumber\":23," ]
+      - [ "获取周期分析报告列表成功", True, 200, "\"cycleNumber\":2," ]
 
   test_coreservice_CycleStatus:
     parameters:
       title, cycleNumber, except_result, expect_code, expect_msg
     values:
-      - ["cycle非完整周期", 23, True, 200, "\"finishedCycle\":false"]
-      - ["cycle是完整周期", 22, True, 200, "\"finishedCycle\":true"]
-      - ["cycle_report加锁不可查看", 23, True, 200, "\"locked\":true"]
-      - ["cycle_report未加锁可查看", 22, True, 200, "\"locked\":false"]
+      - ["cycle非完整周期", 4, True, 200, "\"finishedCycle\":false"]
+      - ["cycle是完整周期", 1, True, 200, "\"finishedCycle\":true"]
+      - ["cycle_report未加锁可查看", 1, True, 200, "\"locked\":false"]
   test_coreservice_ShareAnalysis:
     parameters:
       title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg
     values:
-      - [ "分享用户周期分析报告成功", 20, 1490856038@qq.com,20,-1,True, 200, "" ]
+      - [ "分享用户周期分析报告成功", 1, 1490856038@qq.com,1,-1,True, 200, "" ]
   test_coreservice_ComparisonList:
     parameters:
       title, except_result, expect_code, expect_msg
@@ -28,7 +27,65 @@ TestReport:
     parameters:
       title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg
     values:
-      - [ "分享用户周期比较报告成功", 22, 1490856038@qq.com,24,710927625231568896,True, 200, "" ]
+      - [ "分享用户周期比较报告成功", 1, 1490856038@qq.com,3,710927625231568896,True, 200, "" ]
+
+  test_coreservice_CervicalAndMoodAndSymptom:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户周期分析报告-CervicalAndMoodAndSymptom细节信息成功",200, "\"date\":\"2023-06-01" ]
+
+  test_coreservice_AnalysisGuarantee:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户周期分析报告-9-Cycle Guarantee成功",200, "\"subscribed\":true" ]
+
+
+  test_coreservice_AnalysisOverview:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户周期分析报告-Overview/LH Pattern成功",200, "\"date\":\"2023-06-01" ]
+
+  test_coreservice_AnalysisOvulation:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户周期分析报告-Ovulation Tracking成功",200, "\"recordLH\":true" ]
+
+  test_coreservice_AnalysisPeakFertility:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户周期分析报告-Peak Fertility",200, "\"sexType\":\"NoSex" ]
+
+  test_coreservice_AnalysisSummary:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户周期分析报告-Cycle Summary成功",200, "date\":\"2023-06-19" ]
+
+  test_coreservice_AnalysisPeakUser:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户周期分析报告-用户档案数据",200, "age\":31" ]
+
+  test_coreservice_GlanceIntercourseTiming:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户Cycle at a Glance-Intercourse Timing成功",200, "\"cycleDayNum\":7" ]
+
+  test_coreservice_GlanceOvulation:
+    parameters:
+      title,  expect_code, expect_msg
+    values:
+      - [ "获取用户Cycle at a Glance-Predict/Confirm Ovulation成功",200, "\"recordLH\":true" ]
+
+
+
 
 TestInsemination:
   test_coreservice_InseminationAddOrUpdate:

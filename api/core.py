@@ -34,3 +34,33 @@ class CoreService(RestClient):
 
     def ShareComparison(self, **kwargs):  # 分享用户周期比较报告
         return self.request("/core/cycle/report/share/comparison/link", method="POST", **kwargs)
+
+    def CervicalAndMoodAndSymptom(self, **kwargs):  # 获取用户周期分析报告-CM and Positioning Detail/Mood and Symptom Detail
+        return self.request("/core/cycle/report/get/analysis/cervicalAndMoodAndSymptom", method="GET", **kwargs)
+
+    def AnalysisGuarantee(self, **kwargs):  # 获取用户周期分析报告-9-Cycle Guarantee
+        return self.request("/core/cycle/report/get/analysis/guarantee", method="GET", **kwargs)
+
+    def AnalysisOverview(self, **kwargs):  # 获取用户周期分析报告-Overview/LH Pattern
+        return self.request("/core/cycle/report/get/analysis/overview", method="GET", **kwargs)
+
+    def AnalysisOvulation(self, **kwargs):  # 获取用户周期分析报告-Ovulation Tracking
+        return self.request("/core/cycle/report/get/analysis/ovulation", method="GET", **kwargs)
+
+    def AnalysisPeakFertility(self, **kwargs):  # 获取用户周期分析报告-Peak Fertility
+        return self.request("/core/cycle/report/get/analysis/peakFertility", method="GET", **kwargs)
+
+    def AnalysisSummary(self, **kwargs):  # 获取用户周期分析报告-Cycle Summary
+        return self.request("/core/cycle/report/get/analysis/summary", method="GET", **kwargs)
+
+    def AnalysisPeakUser(self, **kwargs):  # 获取用户周期分析报告-用户档案数据
+        return self.request("/core/cycle/report/get/analysis/user", method="GET", **kwargs)
+
+    def GlanceIntercourseTiming(self, **kwargs):  # 获取用户Cycle at a Glance-Intercourse Timing
+        return self.request("/core/cycle/report/get/glance/intercourseTiming", method="GET", **kwargs)
+
+    def GlanceOvulation(self, **kwargs):  # 获取用户Cycle at a Glance-Predict/Confirm Ovulation
+        return self.request("/core/cycle/report/get/glance/ovulation", method="GET", **kwargs)
+
+
+
