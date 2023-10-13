@@ -76,7 +76,7 @@ def core_token():
     json_data = {
         "anonymousId": "",
         "bindAnonymous": "true",
-        "email": "t02@premom.com",
+        "email": "test121@premom.com",
         "password": "123456",
         "phoneID": "decbb1ef-e41c-4cbd-9265-902415f00504",
         "platform": "iPhone XR 13.3",
