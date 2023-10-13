@@ -80,6 +80,7 @@ class Report():
 
 class Insemination():
     def inseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token, get_current_date):
+        """增加或更新受精记录"""
         header = {
             "Content-Type": "application/json;charset=UTF-8",
             "authToken":core_token
@@ -110,6 +111,7 @@ class Insemination():
 
 
     def inseminationDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """根据日期，获取受经记录"""
         header = {
             "Content-Type": "application/x-www-form-urlencoded",
             "authToken": core_token
@@ -119,20 +121,25 @@ class Insemination():
         }
         res = core.inseminationDataGet(headers=header, params=data)
         logger.info(res.text)
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        # ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
 
     def dailyRecordGetSetting(self, title, expect_code, expect_msg, core_token):
+        """用户每日记录设置"""
         header = {
             "Content-Type": "application/x-www-form-urlencoded",
             "authToken": core_token
         }
         res = core.dailyRecordGetSetting(headers=header)
         logger.info(res.text)
-        logger.info("预期code===>> {}".format(expect_code))
-        logger.info("实际code===>> {}".format(res.status_code))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
     def inseminationGetTip(self, title, editCycle, editDate, expect_code, expect_msg, core_token):
+        """获取提示文案"""
         header = {
             "Content-Type": "application/x-www-form-urlencoded",
             "authToken": core_token
@@ -147,3 +154,72 @@ class Insemination():
         logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
+    def inseminationLogSexKeepOrChangeBtn(self, title, keepLogSex, expect_code, expect_msg, core_token):
+        """保留或更换home页面LogSex按钮"""
+        header = {
+            "Content-Type": "application/json",
+            "authToken":core_token
+        }
+        json_data = {
+            "keepLogSex":keepLogSex,
+            "authToken": core_token
+        }
+        res = core.inseminationLogSexKeepOrChangeBtn(headers=header, params=json_data)
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        # logger.info("预期msg===>> {}".format(expect_msg))
+        # logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def dailyRecordUpdateSetting(self, title, enable, order, settingType, expect_code, expect_msg, core_token):
+        """更新用户每日记录设置"""
+        header = {
+            "Content-Type": "application/json",
+            "authToken": core_token
+        }
+        json_data = {
+            "items": [
+                {
+                    "enable": enable,
+                    "name": "",
+                    "order": order,
+                    "settingType": settingType
+                }
+            ]
+        }
+        res = core.dailyRecordUpdateSetting(headers=header, json=json_data)
+        # logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def dailyRecordMomentGet(self, title, expect_code, expect_msg, core_token, get_current_date):
+        """获取用户Moment分享-每日记录数据"""
+        header = {
+            "Content-Type": "application/json;charset=UTF-8",
+            "authToken": core_token
+        }
+        json_data = {
+            "queryDay":get_current_date
+        }
+        res = core.dailyRecordMomentGet(headers=header, params=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def BBTPopupPageInfo(self, title, expect_code, expect_msg, core_token):
+        """BBT操作视频弹窗信息"""
+        header = {
+            "Content-Type": "application/json;charset=UTF-8",
+            "authToken": core_token
+        }
+        res = core.BBTPopupPageInfo(headers=header)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def prePregnancyGet(self, title, expect_code, expect_msg, core_token):
+        """根据用户获取孕前信息记录"""
+        header = {
+            "Content-Type": "application/json;charset=UTF-8",
+            "authToken": core_token
+        }
+        res = core.prePregnancyGet(headers=header)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message

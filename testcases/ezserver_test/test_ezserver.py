@@ -13,3 +13,8 @@ class TestEzserver:
         logger.info(res)
         logger.info("*************** 结束执行用例 ***************")
 
+    def test_ezserver_addSignsRecords_json(self, title, notes, expect_code, expect_msg, ez_token):
+        logger.info("*************** 开始执行用例 ***************")
+        res = Ezserver().addSignsRecords_json(title, notes, expect_code, expect_msg, ez_token)
+        logger.info(res)
+        logger.info("*************** 结束执行用例 ***************")
