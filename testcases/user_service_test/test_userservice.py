@@ -7,7 +7,7 @@ from operation.userservice import User, Member
 
 userInstance = User()
 
-@pytest.mark.flaky(reruns=2,reruns_delay=5)
+@pytest.mark.flaky()
 class TestLogin(object):
     def test_userservice_login(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone,
                                except_result, expect_code, expect_msg):
