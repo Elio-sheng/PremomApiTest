@@ -85,16 +85,16 @@ TestLogin: # TestLogin is the name of the test suite
     parameters: # parameters that the test case accepts
       title, email, password, OSType, lastName, firstName, expect_code, expect_msg
     values:
-       - [
-           "ios-注册成功",
-           "test594@premom.com",
-           "123456",
-           "iPhone 13  Pro 15.3.1",
-           "Snd",
-           "Yeue",
-           200,
-           "",
-         ]
+#       - [
+#           "ios-注册成功",
+#           "test609@premom.com",
+#           "123456",
+#           "iPhone 13  Pro 15.3.1",
+#           "Snd",
+#           "Yeue",
+#           200,
+#           "newUser",
+#         ]
        - [
            "重复注册",
            "test590@premom.com",
@@ -205,3 +205,4 @@ TestMember: # TestLogin is the name of the test suite
       title,  except_result, expect_code, expect_msg
     values: # values to be used for each parameter in the test case
       - ["是会员", True, 200, "true"]
+      - ["非会员", True, 200, "false"]

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import json
+import json,pytest
 from core.result_base import ResultBase
 from api.user import UserService
 from common.logger import logger
@@ -44,11 +44,11 @@ class User(object):
         # result = db.select_db(sql)
         # logger.info(result)
         res = webUser.webUserLogin(json=json_data, headers=header)
-        logger.info(1)
         logger.info(res.json())
         ResultBase(res, expect_code, expect_msg,
                    expect_msg, res)  # 断言code和message
 
+    # @pytest.mark.dependency(name="user")
     def webRegister(self, title, email, password, OSType, lastName, firstName, expect_code, expect_msg):
         json_data = {
             "email": email,
@@ -66,21 +66,25 @@ class User(object):
         res = webUser.webRegister(json=json_data, headers=header)
         ResultBase(res, expect_code, expect_msg,
                    expect_msg, res)  # 断言code和message
+        token = res.headers.get("authToken")
+        logger.info(token)
+        return token
 
-    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, userToken):
+    # @pytest.mark.dependency(depends=["user"], scope="session")
+    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, userDeleteToken):
         json_data = {
             "reasonType": reasonType,
             "appsflyerId": appsflyerId
         }
         header = {
-            "authToken": userToken,
+            "authToken": userDeleteToken,
             "Content-Type": "application/json"
         }
         webUser = UserService()
         res = webUser.userDelete(json=json_data, headers=header)
         ResultBase(res, expect_code, expect_msg,
                    expect_msg, res)  # 断言code和message
-        sql = "select email from ezhome.all_login where email='test518@premom.com' ;"
+        sql = "select email from ezhome.all_login where email='test610@premom.com' ;"
         result = db.select_db(sql)
         # logger.info(result)
         assert result == ()

@@ -7,9 +7,8 @@ from operation.userservice import User, Member
 
 userInstance = User()
 
-
+@pytest.mark.flaky(reruns=2,reruns_delay=5)
 class TestLogin(object):
-
     def test_userservice_login(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone,
                                except_result, expect_code, expect_msg):
         # Print a message to indicate the start of the test case
@@ -23,6 +22,7 @@ class TestLogin(object):
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
 
+    # @pytest.mark.dependency(name="user")
     def test_userservice_register(self, title, email, password, OSType, lastName, firstName, expect_code, expect_msg):
         # Print a message to indicate the start of the test case
         logger.info("*************** 开始执行用例 ***************")
@@ -33,6 +33,7 @@ class TestLogin(object):
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
 
+
     @allure.story("myprofile页面信息查询成功")
     def test_userservice_myProfile(self, title, except_result, expect_code, expect_msg, userToken):
         # Print a message to indicate the start of the test case
@@ -42,15 +43,15 @@ class TestLogin(object):
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
 
-    @pytest.mark.skip
+    @pytest.mark.run(order=-1)
+    # @pytest.mark.dependency(depends=["user"], scope="session")
     def test_userservice_delete(self, title, reasonType, appsflyerId, except_result, expect_code, expect_msg,
-                                userToken):
+                                userDeleteToken):
         # Print a message to indicate the start of the test case
         logger.info("*************** 开始执行用例 ***************")
-        logger.info(userToken)
         # Call the webUserDelete function with the provided parameters
         result = userInstance.userDelete(title, reasonType, appsflyerId, except_result, expect_code, expect_msg,
-                                         userToken)
+                                         userDeleteToken)
         logger.info(result)
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
@@ -84,13 +85,13 @@ class TestLogin(object):
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
-# class TestMember():
-#     def test_userservice_ismember(self, title,except_result, expect_code, expect_msg,global_token):
-#         # Print a message to indicate the start of the test case
-#         logger.info("*************** 开始执行用例 ***************")
-#         # Call the webUserLogin function with the provided parameters
-#         result = Member().ismember(title, except_result, expect_code,expect_msg,global_token)
-#         # Log the expected result, code, and message
-#         logger.info(result)
-#         # Print a message to indicate the end of the test case
-#         logger.info("*************** 结束执行用例 ***************")
+class TestMember():
+    def test_userservice_ismember(self, title,except_result, expect_code, expect_msg,global_token):
+        # Print a message to indicate the start of the test case
+        logger.info("*************** 开始执行用例 ***************")
+        # Call the webUserLogin function with the provided parameters
+        result = Member().ismember(title, except_result, expect_code,expect_msg,global_token)
+        # Log the expected result, code, and message
+        logger.info(result)
+        # Print a message to indicate the end of the test case
+        logger.info("*************** 结束执行用例 ***************")

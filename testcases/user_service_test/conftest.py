@@ -81,3 +81,24 @@ def userToken():
     res = userservice.webUserLogin(json=json_data, headers=header)
     token = res.headers.get("authToken")
     return token
+
+
+@pytest.fixture(scope="session", autouse=True)
+# @pytest.mark.dependency(name="user")
+def userDeleteToken():
+    header = {
+            "apiVersion": "42",
+            "Content-Type": "application/json"
+        }
+    json_data = {
+            "email": "test610@premom.com",
+            "password": "123456",
+            "OSType": "iPhone 13  Pro 15.3.1",
+            "lastName": "yre",
+            "firstName": "weo"
+        }
+    userservice = UserService()
+    res = userservice.webRegister(json=json_data, headers=header)
+    token = res.headers.get("authToken")
+    logger.info(token)
+    return token
