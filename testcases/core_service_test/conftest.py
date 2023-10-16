@@ -4,6 +4,7 @@
 import pytest
 import os
 from common.logger import logger
+from common.mysql_operate import db
 from common.read_data import yaml
 from api.user import UserService
 import json
@@ -76,7 +77,7 @@ def core_token():
     json_data = {
         "anonymousId": "",
         "bindAnonymous": "true",
-        "email": "test121@premom.com",
+        "email": "t999@premomtest.com",
         "password": "123456",
         "phoneID": "decbb1ef-e41c-4cbd-9265-902415f00504",
         "platform": "iPhone XR 13.3",
@@ -100,3 +101,11 @@ def get_current_date():
         raise e
     else:
         return str(current_date)
+
+@pytest.fixture(scope="class", autouse=True)
+def get_userId():
+    sql = 'select user_id from ezhome.all_login WHERE email = \'t999@premomtest.com\';'
+    sql_res = db.select_db(sql)
+    uid = str(sql_res[0]['user_id'])
+
+    return uid
