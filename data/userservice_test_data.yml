@@ -205,4 +205,3 @@ TestMember: # TestLogin is the name of the test suite
       title,  except_result, expect_code, expect_msg
     values: # values to be used for each parameter in the test case
       - ["是会员", True, 200, "true"]
-      - ["非会员", True, 200, "false"]

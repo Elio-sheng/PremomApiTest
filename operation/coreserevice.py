@@ -380,30 +380,32 @@ class Insemination():
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
-        sql = 'DELETE FROM core.insemination_log WHERE user_id = 26332287 AND time LIKE"2023-10-1%";'
-        sql2 = 'select * from core.insemination_log WHERE user_id = 26332287;'
-        sql_res = db.select_db(sql)
-        sql_res2 = db.select_db(sql2)
-        logger.info(sql_res2)
-        logger.info(sql_res)
 
 
-    def inseminationDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+
+    def inseminationDataGet(self, title, get_current_date, expect_code, expect_msg, core_token):
         """根据日期，获取受经记录"""
         header = {
             "Content-Type": "application/x-www-form-urlencoded",
             "authToken": core_token
         }
         data = {
-            "recordDate":recordDate
+            "recordDate":get_current_date
         }
         res = core.inseminationDataGet(headers=header, params=data)
         logger.info(res.text)
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
-        logger.info("预期msg===>> {}".format(expect_msg))
-        logger.info("实际msg===>> {}".format(res.text))
-        # ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        # logger.info("预期msg===>> {}".format(expect_msg))
+        # logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        sql = 'SELECT id FROM core.insemination_log WHERE user_id = 26774415 and time like "2023-10-1%" LIMIT 1;'   #查询当前使劲按生成的受精记录
+        sql_res = db.select_db(sql)
+        assert res.json()['id'] in str(sql_res[0]["id"])   #断言当前生成的记录id：返回的id=数据库存的id
+        delete_sql = 'DELETE FROM core.insemination_log WHERE user_id = 26774415 AND time LIKE"2023-10-1%";'    #删除用户受精记录
+        # log_sql = 'select * from core.insemination_log WHERE user_id = 26774415;'   #查看用户受精记录
+        delete_sql_res = db.select_db(delete_sql)
+        # log_sql_res = db.select_db(log_sql)
 
 
     def dailyRecordGetSetting(self, title, expect_code, expect_msg, core_token):
@@ -443,10 +445,6 @@ class Insemination():
             "authToken": core_token
         }
         res = core.inseminationLogSexKeepOrChangeBtn(headers=header, params=json_data)
-        logger.info("预期code===>> {}".format(expect_code))
-        logger.info("实际code===>> {}".format(res.status_code))
-        # logger.info("预期msg===>> {}".format(expect_msg))
-        # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
 
     def dailyRecordUpdateSetting(self, title, enable, order, settingType, expect_code, expect_msg, core_token):
@@ -501,3 +499,77 @@ class Insemination():
         res = core.prePregnancyGet(headers=header)
         logger.info(res.text)
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def prePregnancySave(self, title, height, heightUnit, weight, weightUnit, expect_code, expect_msg, core_token):
+        """保存孕前信息记录"""
+        header = {
+            "Content-Type": "application/json",
+            "authToken": core_token
+        }
+        json_data = {
+            "height": height,
+            "heightUnit": heightUnit,
+            "weight": weight,
+            "weightUnit": weightUnit
+        }
+        res = core.prePregnancySave(headers=header, json=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def mooeGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """获取用户心情记录"""
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        json_data = {
+            "recordDate":recordDate
+        }
+        res = core.mooeGet(headers=header, params=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def medicineGalleryGet(self, title, expect_code, expect_msg, core_token):
+        """获取用户药品记录"""
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        res = core.medicineGalleryGet(headers=header)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def medicineGalleryUpdate(self, title, category, categoryOrder, deleted, intakeNumber, medicineId,
+                                    name, order, reminder, reminderTime, type, expect_code, expect_msg, core_token):
+        """更新用户药品记录"""
+        header = {
+            "Content-Type": "application/json",
+            "authToken": core_token
+        }
+        json_data = {
+            "category": category,
+            "categoryOrder": categoryOrder,
+            "deleted": deleted,
+            "intakeNumber": intakeNumber,
+            "medicineId": medicineId,
+            "name": name,
+            "order": order,
+            "reminder": reminder,
+            "reminderTime": reminderTime,
+            "type": type
+        }
+        res = core.medicineGalleryUpdate(headers=header, json=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def medicineGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """获取用户服药记录"""
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        json_data = {
+            "recordDate":recordDate
+        }
+        res = core.medicineGet(headers=header, params=json_data)
+        logger.info(res.text)

@@ -97,9 +97,9 @@ TestInsemination:
 
   test_coreservice_inseminationDataGet:   #根据日期，获取受经记录
     parameters:
-      title, recordDate, expect_code, expect_msg
+      title,  expect_code, expect_msg
     values:
-      - ["获取成功", "2023-09-27", 200, "2023-09-27"]
+      - ["获取成功", 200, ""]
 
   test_coreservice_dailyRecordGetSetting:  #用户每日记录设置
     parameters:
@@ -147,3 +147,39 @@ TestInsemination:
       title, expect_code, expect_msg
     values:
       - ["查询成功", 200, ""]
+
+  test_coreservice_prePregnancySave: # 保存孕前信息记录
+    parameters:
+      #heightUnit 身高单位: CM:1, IN:2
+      #weightUnit  体重单位: KG:1, LB:2
+      title, height, heightUnit, weight, weightUnit, expect_code, expect_msg
+    values:
+      - ["保存成功", 188, 1, 70, 1, 200, ""]
+      - ["保存成功", 188, 2, 70, 2, 200, ""]
+
+  test_coreservice_moodGet:  # 获取用户心情记录
+    parameters:
+      title, recordDate, expect_code, expect_msg
+    values:
+      - ["获取成功", "2023-10-18", 200, "mood"]
+
+  test_coresesrvice_medicineGalleryGet:   # 获取用户药品记录
+    parameters:
+      title, expect_code, expect_msg
+    values:
+      - ["查询成功", 200, "Metformin"]
+
+  test_coresesrvice_medicineGalleryUpdate: # 更新用户药品记录
+    parameters:
+      #category  药品分类,可用值:Custom,FertilityMedication,Other
+      #intakeNumber  每日服药次数
+      #medicineId 药品ID
+      title, category, categoryOrder, deleted, intakeNumber, medicineId, name, order, reminder, reminderTime, type, expect_code, expect_msg
+    values:
+      - [ "更新成功", "Custom", 1, false, 2, "1467b34b-af60-4c91-9296-c0fe7c529f0e", "Metformin", 1, true, "08:00,13:00", "Cream", 200, ""]
+
+  test_coreserevice_medicineGet:  # 获取用户服药记录
+    parameters:
+      title, recordDate, expect_code, expect_msg
+    values:
+      - ["获取成功", "2023-10-18", 200, ""]

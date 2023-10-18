@@ -89,15 +89,6 @@ class CoreService(RestClient):
     def mooeGet(self, **kwargs):  # 获取用户心情记录
         return self.request("/core/mood/get", method="GET", **kwargs)
 
-    def getPregnancyWeekAndDayNum(self, **kwargs):  # 查询孕期所在第几周几天
-        return self.request("/core/pregnancy/internal/getPregnancyWeekAndDayNum", method="GET", **kwargs)
-
-    def getPregnancyWeekNum(self, **kwargs):  # 查询孕期所在周
-        return self.request("/core/pregnancy/internal/getPregnancyWeekNum", method="GET", **kwargs)
-
-    def isTTC(self, **kwargs):  # 判断当前用户App是否处于TTC(Trying to conceive)备孕模式
-        return self.request("/core/pregnancy/internal/is/ttc", method="GET", **kwargs)
-
     def medicineGalleryGet(self, **kwargs):  # 获取用户药品记录
         return self.request("/core/medicine/gallery/get", method="GET", **kwargs)
 

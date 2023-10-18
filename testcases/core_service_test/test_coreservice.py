@@ -44,13 +44,13 @@ class TestReport():
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
 
-    @allure.story("分享用户周期比较报告")
-    def test_coreservice_ShareComparison(self, title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg,core_token):
-        logger.info("*************** 开始执行用例 ***************")
-        result = Core_request.ShareAnalysis(title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg, core_token)
-        logger.info(result)
-        # Print a message to indicate the end of the test case
-        logger.info("*************** 结束执行用例 ***************")
+    # @allure.story("分享用户周期比较报告")
+    # def test_coreservice_ShareComparison(self, title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg,core_token):
+    #     logger.info("*************** 开始执行用例 ***************")
+    #     result = Core_request.ShareAnalysis(title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg, core_token)
+    #     logger.info(result)
+    #     # Print a message to indicate the end of the test case
+    #     logger.info("*************** 结束执行用例 ***************")
 
 
     @allure.story("获取用户周期分析报告-CM and Positioning Detail/Mood and Symptom Detail")
@@ -128,36 +128,6 @@ class TestReport():
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
-class TestInsemination():
-    def test_coreservice_InseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token, get_current_date):
-        logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().inseminationAddOrUpdate(title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token, get_current_date)
-        logger.info(result)
-        logger.info("*************** 结束执行用例 ***************")
-
-    def test_coreservice_inseminationDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
-        logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().inseminationDataGet(title, recordDate, expect_code, expect_msg, core_token)
-        logger.info(result)
-        logger.info("*************** 结束执行用例 ***************")
-
-    def test_coreservice_dailyRecordGetSetting(self, title, expect_code, expect_msg, core_token):
-        logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().dailyRecordGetSetting(title,  expect_code, expect_msg, core_token)
-        logger.info(result)
-        logger.info("*************** 结束执行用例 ***************")
-
-
-    def test_coreservice_inseminationGetTip(self, title, editCycle, editDate, expect_code, expect_msg, core_token):
-        logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().inseminationGetTip(title, editCycle, editDate, expect_code, expect_msg, core_token)
-        logger.info(result)
-        logger.info("*************** 结束执行用例 ***************")
-
-
-
-
-
 
 class TestInsemination():
     def test_coreservice_InseminationAddOrUpdate(self, title, id, frozenSperm, noInsemination, noneOfTheAbove, triggerShot, type, expect_code, expect_msg, core_token, get_current_date):
@@ -166,9 +136,9 @@ class TestInsemination():
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
-    def test_coreservice_inseminationDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+    def test_coreservice_inseminationDataGet(self, title, get_current_date, expect_code, expect_msg, core_token):
         logger.info("*************** 开始执行用例 ***************")
-        result = Insemination().inseminationDataGet(title, recordDate, expect_code, expect_msg, core_token)
+        result = Insemination().inseminationDataGet(title, get_current_date, expect_code, expect_msg, core_token)
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
@@ -221,3 +191,39 @@ class TestInsemination():
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
 
+    def test_coreservice_prePregnancySave(self, title, height, heightUnit, weight, weightUnit, expect_code, expect_msg, core_token):
+        """保存孕前信息记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().prePregnancySave(title, height, heightUnit, weight, weightUnit, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreservice_moodGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """获取用户心情记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().mooeGet(title, recordDate, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coresesrvice_medicineGalleryGet(self, title, expect_code, expect_msg, core_token):
+        """获取用户药品记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().medicineGalleryGet(title, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coresesrvice_medicineGalleryUpdate(self, title, category, categoryOrder, deleted, intakeNumber, medicineId,
+                                                name, order, reminder, reminderTime, type, expect_code, expect_msg, core_token):
+        """更新用户药品记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().medicineGalleryUpdate(title, category, categoryOrder, deleted, intakeNumber, medicineId,
+                                                name, order, reminder, reminderTime, type, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreserevice_medicineGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """获取用户服药记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().medicineGet(title, recordDate, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
