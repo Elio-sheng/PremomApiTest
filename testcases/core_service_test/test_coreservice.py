@@ -44,13 +44,13 @@ class TestReport():
         # Print a message to indicate the end of the test case
         logger.info("*************** 结束执行用例 ***************")
 
-    # @allure.story("分享用户周期比较报告")
-    # def test_coreservice_ShareComparison(self, title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg,core_token):
-    #     logger.info("*************** 开始执行用例 ***************")
-    #     result = Core_request.ShareAnalysis(title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg, core_token)
-    #     logger.info(result)
-    #     # Print a message to indicate the end of the test case
-    #     logger.info("*************** 结束执行用例 ***************")
+    @allure.story("分享用户周期比较报告")
+    def test_coreservice_ShareComparison(self, title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg,core_token):
+        logger.info("*************** 开始执行用例 ***************")
+        result = Core_request.ShareAnalysis(title, cycleNumber,email,cycleEndNumber,id, except_result, expect_code, expect_msg, core_token)
+        logger.info(result)
+        # Print a message to indicate the end of the test case
+        logger.info("*************** 结束执行用例 ***************")
 
 
     @allure.story("获取用户周期分析报告-CM and Positioning Detail/Mood and Symptom Detail")
