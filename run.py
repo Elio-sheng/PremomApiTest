@@ -6,7 +6,7 @@ import pytest
 
 if __name__ == "__main__":
     pytest.main()
-    os.system("allure generate ./temps -o ./report --clean")#打印报告
+    # os.system("allure generate ./temps -o ./report --clean")#打印报告
     # allure generate命令，固定的
     # ./ temp临时的json格式报告的路径
     # -o输出output
