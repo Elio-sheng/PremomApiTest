@@ -182,4 +182,57 @@ TestInsemination:
     parameters:
       title, recordDate, expect_code, expect_msg
     values:
-      - ["获取成功", "2023-10-18", 200, ""]
+      - ["获取成功", "2023-10-18", 200, "Metformin"]
+
+  test_coreserevice_medicineUpdate: # 更新用户服药记录
+    parameters:
+      title, category, categoryName, categoryOrder, enable, medicineId, name, order, recordDate, expect_code, expect_msg
+    values:
+      - [ "更新成功",
+          "FertilityMedication",
+          "Fertility Medication",
+          1,
+          false,
+          "7ec82537-1624-45f1-b4f8-9ed48f61db57",
+          "Letrozole/Femara",
+          0,
+          "2023-10-18",
+          200,
+          "" ]
+  test_coreserevice_noteGet:  # 获取用户每日记录笔记
+    parameters:
+      title, recordDate, expect_code, expect_msg
+    values:
+      - ["记录成功", "2023-10-19", 200, "2023-10-19"]
+
+  test_coreserevice_spermLogAdd:   # 增加精子记录
+    parameters:
+      title, images, progressiveMotility, spermCount, time, totalMotility, expect_code, expect_msg
+    values:
+      - [ "新增成功",
+          "https://s3-us-west-2.amazonaws.com/premom/test/order/activities/manager/a57aa63c7101000.jpeg,
+          https://s3-us-west-2.amazonaws.com/premom/test/order/activities/manager/a1e0d4e52d01000.png",
+          "55",
+          "100",
+          "2023-10-17",
+          "160",
+          200,
+          "" ]
+
+  test_coreservice_spermDataGet:  #根据日期，获取精子记录
+    parameters:
+      title, recordDate, expect_code, expect_msg
+    values:
+      - ["获取成功", "2023-10-17", 200, "2023-10-17"]
+
+  test_coreservice_spermLogHistoryGet:   # 获取用户精子历史数据列表
+    parameters:
+      title, page, size, expect_code, expect_msg
+    values:
+      - ["获取成功", 1, 100, 200, "progressiveMotility"]
+
+  test_coreservice_spermLogGet: # 通过主键id获取用户精子准备记录
+    parameters:
+      title, id, expect_code, expect_msg
+    values:
+      - [ "获取成功", "746365724449083392", 200, "" ]

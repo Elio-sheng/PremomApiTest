@@ -1,6 +1,7 @@
 """
 -*- coding: utf-8 -*-
 """
+import requests
 import json
 import os
 from core.result_base import ResultBase
@@ -399,10 +400,10 @@ class Insemination():
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
         ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
-        sql = 'SELECT id FROM core.insemination_log WHERE user_id = 26774415 and time like "2023-10-1%" LIMIT 1;'   #查询当前使劲按生成的受精记录
+        sql = 'SELECT id FROM core.insemination_log WHERE user_id = 26774415 and time like "2023-10-2%" LIMIT 1;'   #查询当前使劲按生成的受精记录
         sql_res = db.select_db(sql)
         assert res.json()['id'] in str(sql_res[0]["id"])   #断言当前生成的记录id：返回的id=数据库存的id
-        delete_sql = 'DELETE FROM core.insemination_log WHERE user_id = 26774415 AND time LIKE"2023-10-1%";'    #删除用户受精记录
+        delete_sql = 'DELETE FROM core.insemination_log WHERE user_id = 26774415 AND time LIKE"2023-10-2%";'    #删除用户受精记录
         # log_sql = 'select * from core.insemination_log WHERE user_id = 26774415;'   #查看用户受精记录
         delete_sql_res = db.select_db(delete_sql)
         # log_sql_res = db.select_db(log_sql)
@@ -573,3 +574,116 @@ class Insemination():
         }
         res = core.medicineGet(headers=header, params=json_data)
         logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def medicineUpdate(self, title, category, categoryName, categoryOrder, enable, medicineId, name, order,
+                       recordDate, expect_code, expect_msg, core_token):
+        """更新用户服药记录"""
+        header = {
+            "Content-Type": "application/json",
+            "authToken": core_token
+        }
+        json_data = {
+            "items": [
+                {
+                    "category": category,
+                    "categoryName": categoryName,
+                    "categoryOrder": categoryOrder,
+                    "enable": enable,
+                    "medicineId": medicineId,
+                    "name": name,
+                    "order": order
+                }
+            ],
+            "recordDate": recordDate
+        }
+        res = core.medicineUpdate(headers=header, json=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def noteGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """获取用户每日记录笔记"""
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        json_data = {
+            "recordDate":recordDate
+        }
+        res = core.noteGet(headers=header, params=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def spermLogAdd(self, title, images, progressiveMotility, spermCount, time, totalMotility,
+                    expect_code, expect_msg, core_token):
+        """增加精子记录"""
+        header = {
+            "Content-Type": "application/json",
+            "authToken": core_token
+        }
+        json_data = {
+            "images": [images],
+            "progressiveMotility":progressiveMotility,
+            "spermCount":spermCount,
+            "time":time,
+            "totalMotility":totalMotility
+        }
+        res = core.spermLogAdd(headers=header, json=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        logger.info(res.json()["id"])
+        sql = 'SELECT id FROM core.sperm_prep WHERE user_id = "26774415" AND time LIKE "2023-10-17%";'
+        result = db.select_db(sql)
+        # logger.info(result)
+        assert res.json()["id"] == str(result[0]["id"])  #断言数据库
+
+
+    def spermDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """根据日期，获取精子记录"""
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        json_data = {
+            "recordDate":recordDate
+        }
+        res = core.spermDataGet(headers=header, params=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        del_sql = 'DELETE FROM core.sperm_prep WHERE user_id = 26774415 AND time LIKE "2023-10-17%";'  # 清数据
+        del_res = db.select_db(del_sql)
+
+    def spermLogHistoryGet(self, title, page, size, expect_code, expect_msg, core_token):
+        """获取用户精子历史数据列表"""
+        header = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "authToken": core_token
+        }
+        json_data = {
+            "page":page,
+            "size":size
+        }
+        res = core.spermLogHistoryGet(headers=header, params=json_data)
+        logger.info(res.text)
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+
+    def spermLogGet(self, title, id, expect_code, expect_msg, core_token):
+        """根据主键id，获取用户精子准备记录"""
+        header = {
+            "Content-Type":"application/json",
+            "apiVersion":"25",
+            "appVersion":"1.15.0",
+            "Accept":"*/*",
+            "authToken":core_token
+        }
+        json_data = {
+            "id":id
+        }
+        res = core.spermLogGet(headers=header, params=json_data)
+        logger.info(res.text)
+        logger.info("url===>> {}".format(res.url))
+        logger.info("预期code===>> {}".format(expect_code))
+        logger.info("实际code===>> {}".format(res.status_code))
+        logger.info("预期msg===>> {}".format(expect_msg))
+        logger.info("实际msg===>> {}".format(res.text))
+        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message

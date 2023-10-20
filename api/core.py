@@ -117,7 +117,7 @@ class CoreService(RestClient):
         return self.request("/core/sperm/prep/log/delete", method="POST", **kwargs)
 
     def spermLogGet(self, **kwargs):  # 获取用户精子准备记录，根据主键id
-        return self.request("core/sperm/prep/log/get/{id}", method="GET", **kwargs)
+        return self.request("/core/sperm/prep/log/get/{id}", method="GET", **kwargs)
 
     def spermLogHistoryGet(self, **kwargs):  # 获取用户精子历史数据列表
         return self.request("/core/sperm/prep/log/history/get", method="GET", **kwargs)

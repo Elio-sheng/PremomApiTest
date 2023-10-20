@@ -227,3 +227,46 @@ class TestInsemination():
         result = Insemination().medicineGet(title, recordDate, expect_code, expect_msg, core_token)
         logger.info(result)
         logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreserevice_medicineUpdate(self, title, category, categoryName, categoryOrder, enable, medicineId, name, order,
+                       recordDate, expect_code, expect_msg, core_token):
+        """更新用户服药记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().medicineUpdate(title, category, categoryName, categoryOrder, enable, medicineId, name, order,
+                       recordDate, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreserevice_noteGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """获取用户每日记录笔记"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().noteGet(title, recordDate, expect_code, expect_msg, core_token)
+        logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreserevice_spermLogAdd(self, title, images, progressiveMotility, spermCount, time, totalMotility,
+                                      expect_code, expect_msg, core_token):
+        """增加精子记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().spermLogAdd(title, images, progressiveMotility, spermCount, time, totalMotility,
+                                      expect_code, expect_msg, core_token)
+        # logger.info(result)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreservice_spermDataGet(self, title, recordDate, expect_code, expect_msg, core_token):
+        """根据日期，获取精子记录"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().spermDataGet(title, recordDate, expect_code, expect_msg, core_token)
+        logger.info("*************** 结束执行用例 ***************")
+
+    def test_coreservice_spermLogHistoryGet(self, title, page, size, expect_code, expect_msg, core_token):
+        """获取用户精子历史数据列表"""
+        logger.info("*************** 开始执行用例 ***************")
+        result = Insemination().spermLogHistoryGet(title, page, size, expect_code, expect_msg, core_token)
+        logger.info("*************** 结束执行用例 ***************")
+
+    # def test_coreservice_spermLogGet(self, title, id, expect_code, expect_msg, core_token):
+    #     """获取用户精子历史数据列表"""
+    #     logger.info("*************** 开始执行用例 ***************")
+    #     result = Insemination().spermLogGet(title, id, expect_code, expect_msg, core_token)
+    #     logger.info("*************** 结束执行用例 ***************")
