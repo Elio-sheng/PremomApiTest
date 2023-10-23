@@ -17,8 +17,7 @@
         }
         /*div styles*/
         .status {
-            background-color: <%=
-                build.result.toString() == "SUCCESS" ? 'green' : 'red' %>;
+            background-color: <%= build.result.toString() == "SUCCESS" ? 'green' : 'red' %>;
             font-size: 28px;
             font-weight: bold;
             color: white;
@@ -66,11 +65,6 @@
                 </tr>
             </tbody>
         </table>
-                <!-- 变更信息 -->
-        <h2>Changes Since Last Success</h2>
-                <ul>
-                    ${CHANGES_SINCE_LAST_SUCCESS, format="<li>%a: %m</li>"}
-                </ul>
         <!-- main -->
         <% def artifacts = build.artifacts
             if (artifacts != null && artifacts.size() > 0) { %>
@@ -123,6 +117,11 @@
             <img lazymap="${allureResultsUrl}/graphMap" src="${allureResultsUrl}/graph" alt="Allure results trend"/>
         <% } %>
         <!-- content -->
+        
+        <!-- Git Changes -->
+        <h2>Git Changes</h2>
+        <pre>${currentBuild.rawBuild.description}</pre>
+        
         <!-- bottom message -->
     </div>
 </body>
