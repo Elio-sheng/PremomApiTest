@@ -65,8 +65,8 @@ class RestClient:
         cookies = dict(**kwargs).get("cookies")
 
         # Log the details of the request
-        self.request_log(url, method, data, json,
-                         params, headers, files, cookies)
+        self.request_log(url, method, data, json, params, headers, files,
+                         cookies)
 
         if method == "GET":
             # Send a GET request using the session object
@@ -90,7 +90,16 @@ class RestClient:
             # Send a PATCH request using the session object
             return self.session.patch(url, data, **kwargs)
 
-    def request_log(self, url, method, data=None, json=None, params=None, headers=None, files=None, cookies=None, **kwargs):
+    def request_log(self,
+                    url,
+                    method,
+                    data=None,
+                    json=None,
+                    params=None,
+                    headers=None,
+                    files=None,
+                    cookies=None,
+                    **kwargs):
         # Log the API request URL
         logger.info("接口请求地址 ==>> {}".format(url))
 

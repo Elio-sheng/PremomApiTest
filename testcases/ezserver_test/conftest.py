@@ -21,6 +21,7 @@ BASE_PATH = os.path.join(grandparent_directory, "data")
 logger.info(BASE_PATH)
 ezTestdata = None
 
+
 def get_data(yaml_file_name):
     data_file_path = os.path.join(BASE_PATH, yaml_file_name)
     # logger.info(data_file_path)
@@ -60,11 +61,13 @@ def pytest_generate_tests(metafunc):
     if funcdata:
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
-        values = [tuple(v) if isinstance(v, list)
-                  else v for v in funcdata['values']]
+        values = [
+            tuple(v) if isinstance(v, list) else v for v in funcdata['values']
+        ]
         logger.info(f"Parameters: {parameters}")
         logger.info(f"Values: {values}")
         metafunc.parametrize(parameters, values)
+
 
 @pytest.fixture(scope="session", autouse=True)
 def ez_token():
@@ -77,9 +80,7 @@ def ez_token():
         "platform": "iPhone XR 13.3",
         "timeZone": "+0800"
     }
-    header = {
-        "Content-Type": "application/json"
-    }
+    header = {"Content-Type": "application/json"}
     userservice = UserService()
     res = userservice.webUserLogin(json=json_data, headers=header)
     token = res.headers.get("authToken")
@@ -114,4 +115,3 @@ def ez_token():
 #     # logger.info(data)
 #     # 返回读取到的数据，供测试函数使用
 #     yield data
-

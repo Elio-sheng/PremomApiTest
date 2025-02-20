@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 
-import json,pytest
+import json
+import pytest
 from core.result_base import ResultBase
 from api.user import UserService
 from common.logger import logger
 import os
 from common.mysql_operate import db
 
+
 class User(object):
-    def webUserLogin(self, title, anonymousId, bindAnonymous, email, password, phoneID, platform, timeZone, except_result, expect_code,expect_msg):
+
+    def webUserLogin(self, title, anonymousId, bindAnonymous, email, password,
+                     phoneID, platform, timeZone, except_result, expect_code,
+                     expect_msg):
         """
         Register user information.
 
@@ -36,20 +41,19 @@ class User(object):
             "timeZone": timeZone,
         }
         # logger.info(json_data)
-        header = {
-            "Content-Type": "application/json"
-        }
+        header = {"Content-Type": "application/json"}
         webUser = UserService()
         # sql = "show tables;"
         # result = db.select_db(sql)
         # logger.info(result)
         res = webUser.webUserLogin(json=json_data, headers=header)
         logger.info(res.json())
-        ResultBase(res, expect_code, expect_msg,
-                   expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
 
     # @pytest.mark.dependency(name="user")
-    def webRegister(self, title, email, password, OSType, lastName, firstName, expect_code, expect_msg):
+    def webRegister(self, title, email, password, OSType, lastName, firstName,
+                    expect_code, expect_msg):
         json_data = {
             "email": email,
             "password": password,
@@ -64,32 +68,31 @@ class User(object):
         }
         webUser = UserService(base_url=os.environ.get("API_URL"))
         res = webUser.webRegister(json=json_data, headers=header)
-        ResultBase(res, expect_code, expect_msg,
-                   expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
         token = res.headers.get("authToken")
         logger.info(token)
         return token
 
     # @pytest.mark.dependency(depends=["user"], scope="session")
-    def userDelete(self, title, reasonType, appsflyerId, expect_result, expect_code, expect_msg, userDeleteToken):
-        json_data = {
-            "reasonType": reasonType,
-            "appsflyerId": appsflyerId
-        }
+    def userDelete(self, title, reasonType, appsflyerId, expect_result,
+                   expect_code, expect_msg, userDeleteToken):
+        json_data = {"reasonType": reasonType, "appsflyerId": appsflyerId}
         header = {
             "authToken": userDeleteToken,
             "Content-Type": "application/json"
         }
         webUser = UserService()
         res = webUser.userDelete(json=json_data, headers=header)
-        ResultBase(res, expect_code, expect_msg,
-                   expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
         sql = "select email from ezhome.all_login where email='test610@premom.com' ;"
         result = db.select_db(sql)
         # logger.info(result)
         assert result == ()
 
-    def myProfile(self, title, except_result, expect_code, expect_msg, userToken):
+    def myProfile(self, title, except_result, expect_code, expect_msg,
+                  userToken):
         header = {
             "appversion": "1.36.0",
             "apiversion": "43",
@@ -105,31 +108,31 @@ class User(object):
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg,
-                   expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
 
-    def userGuarantee(self, title, addFreeTestsActivity, params, except_result, expect_code, expect_msg, userToken):
+    def userGuarantee(self, title, addFreeTestsActivity, params, except_result,
+                      expect_code, expect_msg, userToken):
         json_data = {
             "addFreeTestsActivity": addFreeTestsActivity,
             "params": params
         }
-        header = {
-            "Content-Type": "application/json",
-            "authToken": userToken
-        }
+        header = {"Content-Type": "application/json", "authToken": userToken}
         webUser = UserService()
         res = webUser.userGuarantee(headers=header, json=json_data)
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg,
-                   expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
         sql = "UPDATE ezhome.guarantee SET `status`='2' where user_id='26774367';"  # 退出包孕计划
         result = db.select_db(sql)
         # logger.info(result)
 
-    def membershipV2PageInfo(self, title, pageType, platform, productInfos, receipt, zoneIdStr, expect_code, expect_msg, userToken):
+    def membershipV2PageInfo(self, title, pageType, platform, productInfos,
+                             receipt, zoneIdStr, expect_code, expect_msg,
+                             userToken):
         header = {
             "Content-Type": "application/json",
             "authToken": userToken,
@@ -147,9 +150,12 @@ class User(object):
         }
         webUser = UserService()
         res = webUser.userMemberV2PageInfo(headers=header, json=json_data)
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
 
-    def profileInfoUpdate(self,title,birthYear,cycleLength,firstName,periodLength,except_result, expect_code, expect_msg, userToken):
+    def profileInfoUpdate(self, title, birthYear, cycleLength, firstName,
+                          periodLength, except_result, expect_code, expect_msg,
+                          userToken):
         """_summary_
 
         Args:
@@ -158,31 +164,34 @@ class User(object):
             firstName (_type_): Update firstName infomation
             periodLength (_type_): Update periodLength infomation
         """
-        json_data={
-            "birthYear":birthYear,
-            "cycleLength":cycleLength,
-            "firstName":firstName,
-            "periodLength":periodLength
+        json_data = {
+            "birthYear": birthYear,
+            "cycleLength": cycleLength,
+            "firstName": firstName,
+            "periodLength": periodLength
         }
-        header={
+        header = {
             "Content-Type": "application/json",
             "authToken": userToken,
             "appVersion": "1.36.0",
             "apiVersion": "43"
         }
-        webUser=UserService()
-        res=webUser.userProfileInfoUpdate(json=json_data,headers=header)
+        webUser = UserService()
+        res = webUser.userProfileInfoUpdate(json=json_data, headers=header)
         logger.info(res.json())
         logger.info("预期code===>> {}".format(expect_code))
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
+
 
 class Member(object):
     # 初始化数据
     # authToken = global_token()
-    def ismember(self, title, except_result, expect_code, expect_msg, global_token):
+    def ismember(self, title, except_result, expect_code, expect_msg,
+                 global_token):
         header = {
             "apiVersion": '42',
             "appVersion": '1.35.0',
@@ -198,5 +207,5 @@ class Member(object):
         logger.info("实际code===>> {}".format(res.status_code))
         logger.info("预期msg===>> {}".format(expect_msg))
         logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg,
-                   expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message

@@ -5,7 +5,9 @@ import os
 from datetime import datetime, date
 from common.logger import logger
 
+
 class DateTime(object):
+
     @staticmethod
     def get_current_date():
         """获取当前日期"""

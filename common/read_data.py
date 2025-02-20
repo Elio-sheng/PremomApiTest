@@ -28,6 +28,7 @@ class CaseEnum(Enum):
 
 
 class ReadExcel:
+
     def __init__(self, filename):
         self.filename = filename
         self.workbook = openpyxl.load_workbook(self.filename)
@@ -47,9 +48,10 @@ class ReadExcel:
             max_row = self.workbook[sheet].max_row
             for i in range(2, max_row + 1):
                 _dict = {}
-                if wb.cell(row=i, column=CaseEnum.API_EXEC.value).value == 'Yes':
-                    _dict["id"] = wb.cell(
-                        row=i, column=CaseEnum.CASE_ID.value).value
+                if wb.cell(row=i,
+                           column=CaseEnum.API_EXEC.value).value == 'Yes':
+                    _dict["id"] = wb.cell(row=i,
+                                          column=CaseEnum.CASE_ID.value).value
                     _dict["feature"] = wb.cell(
                         row=i, column=CaseEnum.CASE_FEATURE.value).value
                     _dict["title"] = wb.cell(
@@ -60,8 +62,8 @@ class ReadExcel:
                         row=i, column=CaseEnum.API_HEADER.value).value
                     _dict["method"] = wb.cell(
                         row=i, column=CaseEnum.API_METHOD.value).value
-                    _dict["pk"] = wb.cell(
-                        row=i, column=CaseEnum.API_PK.value).value
+                    _dict["pk"] = wb.cell(row=i,
+                                          column=CaseEnum.API_PK.value).value
                     _dict["data"] = wb.cell(
                         row=i, column=CaseEnum.API_DATA.value).value
                     _dict["file"] = wb.cell(
@@ -86,6 +88,7 @@ class MyConfigParser(ConfigParser):
 
 
 class ReadFileData():
+
     def __init__(self):
         pass
 

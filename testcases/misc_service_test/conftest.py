@@ -57,8 +57,9 @@ def pytest_generate_tests(metafunc):
     if funcdata:
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
-        values = [tuple(v) if isinstance(v, list)
-                  else v for v in funcdata['values']]
+        values = [
+            tuple(v) if isinstance(v, list) else v for v in funcdata['values']
+        ]
         logger.info(f"Parameters: {parameters}")
         logger.info(f"Values: {values}")
         metafunc.parametrize(parameters, values)
@@ -75,9 +76,7 @@ def misc_token():
         "platform": "iPhone XR 13.3",
         "timeZone": "+0800"
     }
-    header = {
-        "Content-Type": "application/json"
-    }
+    header = {"Content-Type": "application/json"}
     userservice = UserService()
     res = userservice.webUserLogin(json=json_data, headers=header)
     token = res.headers.get("authToken")

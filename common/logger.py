@@ -22,16 +22,18 @@ class Logger():
         """
         Initialize the Logger class.
         """
-        self.logname = os.path.join(
-            LOG_PATH, "{}.log".format(time.strftime("%Y%m%d")))
+        self.logname = os.path.join(LOG_PATH,
+                                    "{}.log".format(time.strftime("%Y%m%d")))
         self.logger = logging.getLogger("log")
         self.logger.setLevel(logging.DEBUG)
 
         self.formater = logging.Formatter(
-            '[%(asctime)s][%(filename)s %(lineno)d][%(levelname)s]: %(message)s')
+            '[%(asctime)s][%(filename)s %(lineno)d][%(levelname)s]: %(message)s'
+        )
 
-        self.filelogger = logging.FileHandler(
-            self.logname, mode='a', encoding="UTF-8")
+        self.filelogger = logging.FileHandler(self.logname,
+                                              mode='a',
+                                              encoding="UTF-8")
         self.console = logging.StreamHandler()
         self.console.setLevel(logging.DEBUG)
         self.filelogger.setLevel(logging.DEBUG)
