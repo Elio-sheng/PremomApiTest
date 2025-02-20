@@ -18,9 +18,7 @@ def global_token():
         "platform": "iPhone XR 13.3",
         "timeZone": "+0800"
     }
-    header = {
-        "Content-Type": "application/json"
-    }
+    header = {"Content-Type": "application/json"}
     userservice = UserService()
     res = userservice.webUserLogin(json=json_data, headers=header)
     token = res.headers.get("authToken")
@@ -36,7 +34,6 @@ BASE_PATH = os.path.join(parent_directory, "data")
 # logger.info(BASE_PATH)
 
 # 定义一个 pytest fixture 函数，用于加载 Excel 数据
-
 
 # @pytest.fixture(scope="module", autouse=True)
 # def excel_data():

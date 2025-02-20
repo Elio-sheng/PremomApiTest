@@ -7,7 +7,7 @@ from common.logger import logger
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")
-data = data.load_ini(data_file_path)["mysql"]    
+data = data.load_ini(data_file_path)["mysql"]
 DB_CONF = {
     "host": data["MYSQL_HOST"],
     "port": int(data["MYSQL_PORT"]),
@@ -59,9 +59,9 @@ class MysqlDb:
         Returns:
             The query results as a list of dictionaries.
         """
-        self.conn.ping(reconnect=True)    
-        self.cur.execute(sql)     
-        data = self.cur.fetchall()  
+        self.conn.ping(reconnect=True)
+        self.cur.execute(sql)
+        data = self.cur.fetchall()
         return data
 
     def execute_db(self, sql):
@@ -76,7 +76,9 @@ class MysqlDb:
             self.cur.execute(sql)
             self.conn.commit()
         except Exception as e:
-            logger.info("An error occurred while operating MySQL, reason: {}".format(e))
+            logger.info(
+                "An error occurred while operating MySQL, reason: {}".format(
+                    e))
             self.conn.rollback()
 
 

@@ -12,7 +12,8 @@ misc = MiscService()
 
 class Misc:
 
-    def homepage(self, title, pageName, except_result, expect_code, expect_msg, misc_token):
+    def homepage(self, title, pageName, except_result, expect_code, expect_msg,
+                 misc_token):
         header = {
             "Content-Type": "application/x-www-form-urlencoded",
             "appversion": "1.36.0",
@@ -29,9 +30,11 @@ class Misc:
         # logger.info("实际code===>> {}".format(res.status_code))
         # logger.info("预期msg===>> {}".format(expect_msg))
         # logger.info("实际msg===>> {}".format(res.text))
-        ResultBase(res, expect_code, expect_msg, expect_msg, res)  # 断言code和message
+        ResultBase(res, expect_code, expect_msg, expect_msg,
+                   res)  # 断言code和message
 
-    def getreminder(self, title, mode, except_result, expect_code, expect_msg, misc_token):
+    def getreminder(self, title, mode, except_result, expect_code, expect_msg,
+                    misc_token):
         header = {
             "Content-Type": "application/json",
             "appversion": "1.36.0",

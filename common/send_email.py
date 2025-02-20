@@ -21,7 +21,11 @@ class SendEmail:
         send_User = "1511098763@qq.com"  # 邮箱地址
         send_Password = "rnvxxuzyzwlhigdb"  # 163邮箱的smtp密码
         send_Smtp = "smtp.qq.com"  # 使用的邮箱smtp官方地址
-        addreSsee = ["1511098763@qq.com","18278571683@163.com","Enzo.Liu@easyhealthcarecorp.com","cindy.zhang@easyhealthcarecorp.com"] # 收件箱地址
+        addreSsee = [
+            "1511098763@qq.com", "18278571683@163.com",
+            "Enzo.Liu@easyhealthcarecorp.com",
+            "cindy.zhang@easyhealthcarecorp.com"
+        ]  # 收件箱地址
         # 发送的附件内容
         # msg = MIMEText('hh', 'base64', 'utf-8')  # 数据编码方式是utf-8
         msg = MIMEText(open(self.fujian_name, 'rb').read(), "base64", "utf-8")
@@ -31,7 +35,8 @@ class SendEmail:
         # 第一种发件人方式：
         msg['From'] = send_User  # 发件人，声明收到邮件的时候发件人显示用（11不能写中文）
         # print(type(msg['From']))  # 是一个email的对象
-        msg['Subject'] = Header(u'测试邮件', 'utf-8').encode()  # u一般用在中文字符串前面，防止因为源码储存格式问题
+        # u一般用在中文字符串前面，防止因为源码储存格式问题
+        msg['Subject'] = Header(u'测试邮件', 'utf-8').encode()
         msg['To'] = u'test'  # 收件人的名字（随便取）
 
         # print(msg)  # 打印发送给接受的数据
@@ -51,13 +56,13 @@ class SendEmail:
             fpath = path.replace(self.dirpath, '')
 
             for filename in filenames:
-                zip.write(os.path.join(path, filename), os.path.join(fpath, filename))
+                zip.write(os.path.join(path, filename),
+                          os.path.join(fpath, filename))
         zip.close()
         print('压缩成功')
+
 
 # 调试是否调通
 # a = SendEmail(r"send_dir.zip",r'send_dir',r"send_dir.zip")
 # a.run()
 # a.zipDir()
-
-

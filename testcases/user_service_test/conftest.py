@@ -56,8 +56,9 @@ def pytest_generate_tests(metafunc):
     if funcdata:
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
-        values = [tuple(v) if isinstance(v, list)
-                  else v for v in funcdata['values']]
+        values = [
+            tuple(v) if isinstance(v, list) else v for v in funcdata['values']
+        ]
         logger.info(f"Parameters: {parameters}")
         logger.info(f"Values: {values}")
         metafunc.parametrize(parameters, values)
@@ -74,9 +75,7 @@ def userToken():
         "platform": "iPhone XR 13.3",
         "timeZone": "+0800"
     }
-    header = {
-        "Content-Type": "application/json"
-    }
+    header = {"Content-Type": "application/json"}
     userservice = UserService()
     res = userservice.webUserLogin(json=json_data, headers=header)
     token = res.headers.get("authToken")
@@ -86,17 +85,14 @@ def userToken():
 @pytest.fixture(scope="session", autouse=True)
 # @pytest.mark.dependency(name="user")
 def userDeleteToken():
-    header = {
-            "apiVersion": "42",
-            "Content-Type": "application/json"
-        }
+    header = {"apiVersion": "42", "Content-Type": "application/json"}
     json_data = {
-            "email": "test610@premom.com",
-            "password": "123456",
-            "OSType": "iPhone 13  Pro 15.3.1",
-            "lastName": "yre",
-            "firstName": "weo"
-        }
+        "email": "test610@premom.com",
+        "password": "123456",
+        "OSType": "iPhone 13  Pro 15.3.1",
+        "lastName": "yre",
+        "firstName": "weo"
+    }
     userservice = UserService()
     res = userservice.webRegister(json=json_data, headers=header)
     token = res.headers.get("authToken")

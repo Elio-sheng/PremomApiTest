@@ -11,8 +11,6 @@ import json
 # from common.get_time import DateTime
 from datetime import datetime, date
 
-
-
 # 获取当前文件所在的目录路径
 current_directory = os.path.dirname(os.path.abspath(__file__))
 # 获取上一级目录的路径
@@ -22,7 +20,6 @@ grandparent_directory = os.path.dirname(parent_directory)
 # 拼接文件路径，跨平台支持
 BASE_PATH = os.path.join(grandparent_directory, "data")
 logger.info(BASE_PATH)
-
 
 coreTestdata = None
 
@@ -65,8 +62,9 @@ def pytest_generate_tests(metafunc):
     if funcdata:
         parameters = funcdata['parameters']
         # Convert argument lists to tuples
-        values = [tuple(v) if isinstance(v, list)
-                  else v for v in funcdata['values']]
+        values = [
+            tuple(v) if isinstance(v, list) else v for v in funcdata['values']
+        ]
         logger.info(f"Parameters: {parameters}")
         logger.info(f"Values: {values}")
         metafunc.parametrize(parameters, values)
@@ -83,14 +81,13 @@ def core_token():
         "platform": "iPhone XR 13.3",
         "timeZone": "+0800"
     }
-    header = {
-        "Content-Type": "application/json"
-    }
+    header = {"Content-Type": "application/json"}
     userservice = UserService()
     res = userservice.webUserLogin(json=json_data, headers=header)
     token = res.headers.get("authToken")
     logger.info(token)
     return token
+
 
 @pytest.fixture(scope="class", autouse=True)
 def get_current_date():
@@ -101,6 +98,7 @@ def get_current_date():
         raise e
     else:
         return str(current_date)
+
 
 @pytest.fixture(scope="class", autouse=True)
 def get_userId():

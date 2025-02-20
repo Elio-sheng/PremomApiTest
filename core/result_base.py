@@ -4,6 +4,7 @@ from common.logger import logger
 
 
 class ResultBase():
+
     def __init__(self, res, status_code, contains, equals, key):
         """
 
@@ -29,13 +30,12 @@ class ResultBase():
     def assert_result_contain(self):
         # logger.info("测试是否包含xxx")
         # logger.info(self.res.text)
-        assert self.contains in self.res.text, self.contains+"不存在"
+        assert self.contains in self.res.text, self.contains + "不存在"
 
     def assert_result_equal(self):
         try:
             # logger.info("测试键值是否相等")
-            assert self.equals == self.res.json()[self.key], self.equals+"不是预期值"
+            assert self.equals == self.res.json()[
+                self.key], self.equals + "不是预期值"
         except:
             logger.info("不是响应的json文本或key值不存在")
-
-
